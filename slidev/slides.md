@@ -1,638 +1,1960 @@
 ---
-# You can also start simply with 'default'
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
+fonts:
+  sans: Robot
+  serif: Robot Slab
+  mono: Fira Code
 background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: Welcome to Slidev
+title: Git for Software Engineers
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply unocss classes to the current slide
+  ## Git for Software Engineers
+  Master version control, collaboration, and modern development workflows
 class: text-center
-# https://sli.dev/features/drawing
 drawings:
   persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-# open graph
-# seoMeta:
-#  ogImage: https://cover.sli.dev
 ---
 
-# Welcome to Slidev
+# Git for Software Engineers
 
-Presentation slides for developers
+Master the tool that powers collaboration, version control, and modern software development.
 
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
+<div class="pt-12">
+  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover:bg="white hover:bg-opacity-10">
+    Press Space for next page <carbon:arrow-right class="inline"/>
+  </span>
 </div>
 
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
+<div class="pt-4">
+  <span class="text-sm opacity-75">by AnuchitO</span>
+</div>
+
+<div class="abs-br m-6 flex gap-2">
+  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon:edit />
   </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
+  <a href="https://github.com/AnuchitO/course-git" target="_blank" alt="GitHub" title="Open in GitHub"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon-logo-github />
   </a>
 </div>
 
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+Welcome to Git for Software Engineers! This course will take you from Git basics to advanced workflows used in professional software development.
 -->
-
----
-transition: fade-out
----
-
-# What is Slidev?
-
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
-
----
-transition: slide-up
-level: 2
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
 
 ---
 layout: two-cols
 layoutClass: gap-16
 ---
 
-# Table of contents
+# Course Agenda
 
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1" />
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
+<Toc minDepth="1" maxDepth="2" />
 
 ::right::
 
-<Toc text-sm minDepth="1" maxDepth="2" />
+## Learning Objectives
+
+By the end of this course, you will:
+
+✅ **Understand** Git's core concepts and architecture
+✅ **Master** essential Git commands and workflows
+✅ **Collaborate** effectively using branches and remotes
+✅ **Resolve** conflicts and recover from mistakes
+✅ **Apply** professional Git workflows in real projects
+
+<div class="mt-8 p-4 bg-blue-100 dark:bg-blue-900 rounded">
+💡 <strong>Prerequisites:</strong> Basic command line knowledge
+</div>
 
 ---
-layout: image-right
-image: https://cover.sli.dev
----
 
-# Code
+# What is Git?
 
-Use code snippets and get the highlighting directly, and even types hover!
+Git is a **distributed version control system** that tracks changes in files and coordinates work among multiple developers.
 
-```ts [filename-example.ts] {all|4|6|6-7|9|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-import { computed, ref } from 'vue'
+<div class="grid grid-cols-2 gap-8 mt-8">
 
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
+<div>
 
-doubled.value = 2
-```
+## Why Git?
 
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="342" color="#953" width="2" arrowSize="1" />
+- 📈 **Track changes** over time
+- 🤝 **Collaborate** with teams
+- 🔄 **Backup** and sync code
+- 🌿 **Branch** for features
+- ⏪ **Rollback** mistakes
+- 📊 **Audit** code history
 
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
+</div>
 
-<!-- Footer -->
+<div>
 
-[Learn more](https://sli.dev/features/line-highlighting)
+## Git vs Others
 
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
+| Feature     | Git | SVN | Mercurial |
+|-------------|-----|-----|-----------|
+| Distributed | ✅   | ❌   | ✅         |
+| Speed       | ⚡   | 🐌  | ⚡         |
+| Branching   | 🌟  | 😐  | 👍        |
+| Popularity  | 🔥  | 📉  | 📉        |
+
+</div>
+
+</div>
 
 <!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
+Git revolutionized version control by being distributed - every developer has a complete copy of the project history. This enables offline work and makes collaboration more flexible.
 -->
 
 ---
-level: 2
+
+# Git Architecture
+
+Understanding Git's three-tree architecture is crucial for mastering Git.
+
+```mermaid
+graph LR
+    A[Working Directory] -->|git add| B[Staging Area]
+    B -->|git commit| C[Repository]
+    C -->|git checkout| A
+    B -->|git reset| A
+    C -->|git reset --hard| A
+```
+
+<div class="grid grid-cols-3 gap-4 mt-8">
+
+<div class="p-4 border rounded">
+<h3>🗂️ Working Directory</h3>
+Your current files and folders where you make changes
+</div>
+
+<div class="p-4 border rounded">
+<h3>�G Staging Area</h3>
+Prepared changes ready to be committed (like a shopping cart)
+</div>
+
+<div class="p-4 border rounded">
+<h3>📚 Repository</h3>
+Permanent storage of committed snapshots (.git folder)
+</div>
+
+</div>
+
+<!--
+Think of Git as a camera: Working Directory is what you see, Staging Area is what you frame, and Repository is the photo album of snapshots you've taken.
+-->
+
 ---
 
-# Shiki Magic Move
+# Essential Git Commands
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+Let's start with the fundamental commands every developer needs to know.
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+## Getting Started
+```bash
+# Initialize a new repository
+git init
+
+# Clone an existing repository
+git clone <url>
+
+# Check repository status
+git status
+
+# View commit history
+git log --oneline
+```
+
+</div>
+
+<div>
+
+## Basic Workflow
+```bash
+# Stage files for commit
+git add <file>
+git add .  # stage all changes
+
+# Commit staged changes
+git commit -m "Your message"
+
+# View differences
+git diff
+git diff --staged
+```
+
+</div>
+
+</div>
+
+<div class="mt-8 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
+💡 <strong>Pro Tip:</strong> Use <code>git status</code> frequently - it's your best friend for understanding what's happening!
+</div>
+
+<!--
+These commands form the core Git workflow. Practice them until they become muscle memory. The key is understanding what each command does to the three trees.
+-->
+
+---
+
+# Hands-on: Your First Repository
+
+Let's create your first Git repository and make some commits step by step.
 
 ````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
+```bash
+# Step 1: Initialize a new repository
+mkdir my-project
+cd my-project
+git init
 ```
 
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
+```bash
+# Step 1: Initialize a new repository
+mkdir my-project
+cd my-project
+git init
+
+# Step 2: Create initial files
+echo "# My Project" > README.md
+echo "console.log('Hello Git!');" > app.js
 ```
 
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
+```bash
+# Step 1: Initialize a new repository
+mkdir my-project
+cd my-project
+git init
+
+# Step 2: Create initial files
+echo "# My Project" > README.md
+echo "console.log('Hello Git!');" > app.js
+
+# Step 3: Check status and stage files
+git status
+git add .
 ```
 
-Non-code blocks are ignored.
+```bash
+# Step 1: Initialize a new repository
+mkdir my-project
+cd my-project
+git init
 
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
+# Step 2: Create initial files
+echo "# My Project" > README.md
+echo "console.log('Hello Git!');" > app.js
+
+# Step 3: Check status and stage files
+git status
+git add .
+
+# Step 4: Make your first commit
+git commit -m "Initial commit: Add README and app.js"
+```
+
+```bash
+# Step 1: Initialize a new repository
+mkdir my-project
+cd my-project
+git init
+
+# Step 2: Create initial files
+echo "# My Project" > README.md
+echo "console.log('Hello Git!');" > app.js
+
+# Step 3: Check status and stage files
+git status
+git add .
+
+# Step 4: Make your first commit
+git commit -m "Initial commit: Add README and app.js"
+
+# Step 5: Make changes and commit again
+echo "This is a sample project for learning Git" >> README.md
+git add README.md
+git commit -m "Update README with description"
+```
+
+```bash
+# Step 1: Initialize a new repository
+mkdir my-project
+cd my-project
+git init
+
+# Step 2: Create initial files
+echo "# My Project" > README.md
+echo "console.log('Hello Git!');" > app.js
+
+# Step 3: Check status and stage files
+git status
+git add .
+
+# Step 4: Make your first commit
+git commit -m "Initial commit: Add README and app.js"
+
+# Step 5: Make changes and commit again
+echo "This is a sample project for learning Git" >> README.md
+git add README.md
+git commit -m "Update README with description"
+
+# Step 6: View your commit history
+git log --oneline
+git log --graph --oneline --all
 ```
 ````
 
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
+<div class="mt-4 p-3 bg-green-100 dark:bg-green-900 rounded text-sm">
+✅ <strong>Success!</strong> Click through each step to see the complete Git workflow!
 </div>
 
 <!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
+This hands-on exercise demonstrates the basic Git workflow. Notice how each commit creates a snapshot of your project at that point in time.
 -->
 
 ---
-class: px-20
----
 
-# Themes
+# Understanding Commits
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
+A commit is a snapshot of your project at a specific point in time.
 
-<div grid="~ cols-2 gap-2" m="t-2">
+<div class="grid grid-cols-2 gap-8">
 
-```yaml
----
-theme: default
----
-```
+<div>
 
-```yaml
----
-theme: seriph
----
-```
+## Commit Anatomy
+```bash
+commit a1b2c3d4e5f6...
+Author: John Doe <john@example.com>
+Date: Mon Jan 15 10:30:00 2024 +0000
 
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
+    Fix user authentication bug
 
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
+    - Validate token expiration
+    - Add error handling for invalid tokens
+    - Update tests for auth module
 ```
 
 </div>
 
-<br>
+<div>
 
-<v-click>
+## Commit Best Practices
 
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
+### Good Messages ✅
+- `Fix login validation for empty passwords`
+- `Add user profile API endpoint`
+- `Refactor database connection logic`
 
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
+### Bad Messages ❌
+- `fix bug`
+- `update stuff`
+- `asdf`
 
 </div>
+
+</div>
+
+## Commit Message Format
+
+```
+<type>: <subject>
+
+<body>
+
+<footer>
+```
+
+**Types:** feat, fix, docs, style, refactor, test, chore
+
+<!--
+Good commit messages are like good documentation - they help future you and your teammates understand what changed and why. Treat each commit as a logical unit of change.
+-->
 
 ---
 
-# Motions
+# Branching Fundamentals
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+Branches allow you to work on different features simultaneously without affecting the main codebase.
 
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
+```mermaid
+gitgraph
+    commit id: "Initial"
+    commit id: "Add login"
+    branch feature/signup
+    checkout feature/signup
+    commit id: "Add signup form"
+    commit id: "Add validation"
+    checkout main
+    commit id: "Fix bug"
+    merge feature/signup
+    commit id: "Release v1.0"
 ```
 
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
+## Practical Branching Workflow
 
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
+````md magic-move {lines: true}
+```bash
+# Start: Check current branch and status
+git branch
+git status
+```
+
+```bash
+# Start: Check current branch and status
+git branch
+git status
+
+# Create a new feature branch
+git branch feature/user-authentication
+git branch  # see all branches
+```
+
+```bash
+# Start: Check current branch and status
+git branch
+git status
+
+# Create a new feature branch
+git branch feature/user-authentication
+git branch  # see all branches
+
+# Switch to the new branch
+git checkout feature/user-authentication
+# or use the newer command
+git switch feature/user-authentication
+```
+
+```bash
+# Start: Check current branch and status
+git branch
+git status
+
+# Create a new feature branch
+git branch feature/user-authentication
+git branch  # see all branches
+
+# Switch to the new branch
+git checkout feature/user-authentication
+# or use the newer command
+git switch feature/user-authentication
+
+# Shortcut: Create and switch in one command
+git checkout -b feature/user-profile
+```
+
+```bash
+# Start: Check current branch and status
+git branch
+git status
+
+# Create a new feature branch
+git branch feature/user-authentication
+git branch  # see all branches
+
+# Switch to the new branch
+git checkout feature/user-authentication
+
+# Shortcut: Create and switch in one command
+git checkout -b feature/user-profile
+
+# Work on your feature, then merge back
+git checkout main
+git merge feature/user-authentication
+git branch -d feature/user-authentication  # delete merged branch
+```
+````
+
+<div class="mt-4 p-3 bg-blue-100 dark:bg-blue-900 rounded text-sm">
+💡 <strong>Branch Naming:</strong> feature/user-auth, bugfix/login-error, hotfix/security-patch
 </div>
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
-</div>
+<!--
+Think of branches as parallel universes where you can experiment without affecting the main timeline. This is one of Git's most powerful features.
+-->
 
 ---
 
-# LaTeX
+# Merging Strategies
 
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
+There are different ways to combine branches, each with its own use cases.
 
-<div h-3 />
+<div class="grid grid-cols-2 gap-8">
 
-Inline $\sqrt{3x-1}+(1+x)^2$
+<div>
 
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
+## Fast-Forward Merge
+When target branch hasn't changed:
 
-[Learn more](https://sli.dev/features/latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
+```bash
+git checkout main
+git merge feature/quick-fix
 ```
 
 ```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
+gitgraph
+    commit id: "A"
+    commit id: "B"
+    branch feature
+    commit id: "C"
+    commit id: "D"
+    checkout main
+    merge feature
 ```
 
 </div>
 
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
+<div>
 
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
+## Three-Way Merge
+When both branches have new commits:
 
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
+```bash
+git checkout main
+git merge feature/complex-feature
 ```
 
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <div class="i-carbon:arrow-up" />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
+```mermaid
+gitgraph
+    commit id: "A"
+    commit id: "B"
+    branch feature
+    commit id: "C"
+    checkout main
+    commit id: "D"
+    merge feature
+    commit id: "Merge"
 ```
 
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
+</div>
 
-<img v-drag="'square'" src="https://sli.dev/logo.png">
+</div>
 
-###### Draggable Arrow
+## Merge vs Rebase
 
-```md
-<v-drag-arrow two-way />
-```
+| Merge                    | Rebase            |
+|--------------------------|-------------------|
+| Preserves history        | Linear history    |
+| Shows branch context     | Cleaner timeline  |
+| Safe for shared branches | Rewrites history  |
+| `git merge feature`      | `git rebase main` |
 
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
+<!--
+Choose merge for preserving context and rebase for clean history. Never rebase shared branches - it can cause problems for other developers.
+-->
 
 ---
 
-# Monaco Editor
+# Handling Merge Conflicts
 
-Slidev provides built-in Monaco Editor support.
+Conflicts occur when Git can't automatically merge changes. Let's see how to resolve them step by step.
 
-Add `{monaco}` to the code block to turn it into an editor:
+## Conflict Resolution Workflow
 
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
+````md magic-move {lines: true}
+```bash
+# Scenario: Merging feature branch into main
+git checkout main
+git merge feature/auth-refactor
 ```
 
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
+```bash
+# Scenario: Merging feature branch into main
+git checkout main
+git merge feature/auth-refactor
 
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
+# Output: Conflict detected!
+# Auto-merging auth.js
+# CONFLICT (content): Merge conflict in auth.js
+# Automatic merge failed; fix conflicts and then commit the result.
 ```
+
+```bash
+# Scenario: Merging feature branch into main
+git checkout main
+git merge feature/auth-refactor
+
+# Output: Conflict detected!
+# Auto-merging auth.js
+# CONFLICT (content): Merge conflict in auth.js
+# Automatic merge failed; fix conflicts and then commit the result.
+
+# Step 1: Check which files have conflicts
+git status
+```
+
+```bash
+# Step 1: Check which files have conflicts
+git status
+
+# Output shows:
+# Unmerged paths:
+#   (use "git add <file>..." to mark resolution)
+#         both modified:   auth.js
+
+# Step 2: Open the conflicted file and you'll see:
+```
+
+```bash
+// The conflicted file (auth.js) looks like this:
+// <<<<<<< HEAD
+function login(username, password) {
+    return authenticate(username, password);
+}
+// =======
+function login(user, pass) {
+    return auth.validate(user, pass);
+}
+// >>>>>>> feature/auth-refactor
+```
+
+```bash
+# Step 3: Resolve the conflict by choosing or combining changes
+function login(username, password) {
+    return auth.validate(username, password);
+}
+# Remove conflict markers and keep the best parts
+```
+
+```bash
+# Step 4: Stage the resolved file and commit
+git add auth.js
+git status  # should show "All conflicts fixed"
+git commit  # Git will create a merge commit message
+```
+````
+
+<div class="mt-4 p-3 bg-yellow-100 dark:bg-yellow-900 rounded text-sm">
+💡 <strong>Pro Tip:</strong> Use <code>git merge --abort</code> if you want to cancel the merge and start over!
+</div>
+
+<!--
+Conflicts are a normal part of collaborative development. The key is to stay calm, understand what each side is trying to do, and make thoughtful decisions about which changes to keep.
+-->
+
+---
+
+# Remote Repositories
+
+Remote repositories enable collaboration and backup. Let's see how to work with them step by step.
+
+## Setting Up and Working with Remotes
+
+````md magic-move {lines: true}
+```bash
+# Start with a local repository
+git init my-awesome-project
+cd my-awesome-project
+echo "# My Awesome Project" > README.md
+git add README.md
+git commit -m "Initial commit"
+```
+
+```bash
+# Start with a local repository
+git init my-awesome-project
+cd my-awesome-project
+echo "# My Awesome Project" > README.md
+git add README.md
+git commit -m "Initial commit"
+
+# Add a remote repository (create one on GitHub first)
+git remote add origin https://github.com/AnuchitO/my-awesome-project.git
+```
+
+```bash
+# Add a remote repository (create one on GitHub first)
+git remote add origin https://github.com/AnuchitO/my-awesome-project.git
+
+# Check your remotes
+git remote -v
+# origin  https://github.com/AnuchitO/my-awesome-project.git (fetch)
+# origin  https://github.com/AnuchitO/my-awesome-project.git (push)
+```
+
+```bash
+# Check your remotes
+git remote -v
+
+# Push your local commits to remote
+git push -u origin main
+# -u sets upstream tracking for future pushes
+```
+
+```bash
+# Push your local commits to remote
+git push -u origin main
+
+# Now you can simply use:
+git push  # pushes to origin main automatically
+
+# Pull changes from remote
+git pull origin main
+# or just: git pull
+```
+````
+
+## Clone and Contribute Workflow
+
+````md magic-move {lines: true}
+```bash
+# Clone an existing repository
+git clone https://github.com/AnuchitO/awesome-project.git
+cd awesome-project
+```
+
+```bash
+# Clone an existing repository
+git clone https://github.com/AnuchitO/awesome-project.git
+cd awesome-project
+
+# Create a feature branch for your work
+git checkout -b feature/add-user-authentication
+```
+
+```bash
+# Create a feature branch for your work
+git checkout -b feature/add-user-authentication
+
+# Make your changes
+echo "// Authentication logic here" > auth.js
+git add auth.js
+git commit -m "Add authentication module"
+```
+
+```bash
+# Make your changes
+echo "// Authentication logic here" > auth.js
+git add auth.js
+git commit -m "Add authentication module"
+
+# Push your feature branch to remote
+git push origin feature/add-user-authentication
+```
+
+```bash
+# Push your feature branch to remote
+git push origin feature/add-user-authentication
+
+# Now create a Pull Request on GitHub
+# After PR is merged, clean up:
+git checkout main
+git pull origin main
+git branch -d feature/add-user-authentication
+```
+````
+
+<div class="mt-4 p-4 bg-blue-100 dark:bg-blue-900 rounded">
+💡 <strong>Pro Tip:</strong> Use <code>git fetch</code> to download changes without merging, then <code>git merge</code> when you're ready!
+</div>
+
+<!--
+Understanding remotes is crucial for team collaboration. Think of remotes as synchronized copies of your repository that multiple developers can access.
+-->
+
+---
+
+# Advanced Git Operations
+
+Let's explore powerful Git features for managing complex scenarios.
+
+## Git Stash - Save Work in Progress
+
+````md magic-move {lines: true}
+```bash
+# Scenario: You're working on a feature but need to switch branches urgently
+# You have uncommitted changes that aren't ready to commit yet
+git status
+```
+
+```bash
+# Scenario: You're working on a feature but need to switch branches urgently
+# You have uncommitted changes that aren't ready to commit yet
+git status
+
+# Stash your current changes
+git stash
+# or with a descriptive message
+git stash save "WIP: refactoring authentication logic"
+```
+
+```bash
+# Stash your current changes
+git stash save "WIP: refactoring authentication logic"
+
+# Now you can switch branches safely
+git checkout main
+# do urgent work...
+git checkout feature/auth-refactor
+```
+
+```bash
+# Now you can switch branches safely
+git checkout main
+# do urgent work...
+git checkout feature/auth-refactor
+
+# Get your stashed changes back
+git stash list  # see all stashes
+git stash pop   # apply and remove latest stash
+```
+
+```bash
+# Get your stashed changes back
+git stash list  # see all stashes
+git stash pop   # apply and remove latest stash
+
+# Alternative: apply without removing from stash
+git stash apply stash@{0}
+git stash drop stash@{0}  # manually remove when ready
+```
+````
+
+## Git Reset - Undo Changes
+
+````md magic-move {lines: true}
+```bash
+# Different types of reset for different scenarios
+git log --oneline  # see recent commits
+```
+
+```bash
+# Different types of reset for different scenarios
+git log --oneline  # see recent commits
+
+# Soft reset: Undo commit but keep changes staged
+git reset --soft HEAD~1
+git status  # changes are still staged
+```
+
+```bash
+# Soft reset: Undo commit but keep changes staged
+git reset --soft HEAD~1
+git status  # changes are still staged
+
+# Mixed reset (default): Undo commit and unstage changes
+git reset HEAD~1
+git status  # changes are in working directory
+```
+
+```bash
+# Mixed reset (default): Undo commit and unstage changes
+git reset HEAD~1
+git status  # changes are in working directory
+
+# Hard reset: ⚠️ DANGER - Completely remove commit and changes
+git reset --hard HEAD~1
+# Changes are permanently lost!
+```
+````
+
+<div class="mt-4 p-4 bg-red-100 dark:bg-red-900 rounded">
+⚠️ <strong>Warning:</strong> <code>git reset --hard</code> permanently deletes changes. Always stash or commit important work first!
+</div>
+
+<!--
+These advanced operations give you fine-grained control over your Git history. Stash is great for quickly switching contexts, while reset helps you undo mistakes.
+-->
+
+---
+
+# Git Workflows
+
+Different teams use different Git workflows. Let's see the most popular ones in action.
+
+## GitHub Flow - Simple and Effective
+
+````md magic-move {lines: true}
+```bash
+# GitHub Flow: Perfect for continuous deployment
+# Step 1: Always start from main
+git checkout main
+git pull origin main
+```
+
+```bash
+# GitHub Flow: Perfect for continuous deployment
+# Step 1: Always start from main
+git checkout main
+git pull origin main
+
+# Step 2: Create a feature branch
+git checkout -b feature/user-profile-page
+```
+
+```bash
+# Step 2: Create a feature branch
+git checkout -b feature/user-profile-page
+
+# Step 3: Work on your feature
+echo "<h1>User Profile</h1>" > profile.html
+git add profile.html
+git commit -m "Add user profile page structure"
+```
+
+```bash
+# Step 3: Work on your feature
+echo "<h1>User Profile</h1>" > profile.html
+git add profile.html
+git commit -m "Add user profile page structure"
+
+# Step 4: Push and create Pull Request
+git push origin feature/user-profile-page
+# Go to GitHub and create PR
+```
+
+```bash
+# Step 4: Push and create Pull Request
+git push origin feature/user-profile-page
+# Go to GitHub and create PR
+
+# Step 5: After PR review and merge
+git checkout main
+git pull origin main
+git branch -d feature/user-profile-page
+```
+
+```bash
+# Step 5: After PR review and merge
+git checkout main
+git pull origin main
+git branch -d feature/user-profile-page
+
+# Step 6: Deploy main branch
+# This happens automatically with CI/CD
+# Your feature is now live! 🚀
+```
+````
+
+## Git Flow - Structured Release Management
+
+````md magic-move {lines: true}
+```bash
+# Git Flow: Better for scheduled releases
+# Initialize git flow in your repository
+git flow init
+# Accept defaults for branch names
+```
+
+```bash
+# Git Flow: Better for scheduled releases
+# Initialize git flow in your repository
+git flow init
+
+# Start a new feature
+git flow feature start user-authentication
+# This creates feature/user-authentication branch
+```
+
+```bash
+# Start a new feature
+git flow feature start user-authentication
+
+# Work on your feature
+echo "// Auth logic" > auth.js
+git add auth.js
+git commit -m "Implement user authentication"
+```
+
+```bash
+# Work on your feature
+echo "// Auth logic" > auth.js
+git add auth.js
+git commit -m "Implement user authentication"
+
+# Finish the feature (merges to develop)
+git flow feature finish user-authentication
+```
+
+```bash
+# Finish the feature (merges to develop)
+git flow feature finish user-authentication
+
+# When ready for release
+git flow release start v1.2.0
+# Make final adjustments, update version numbers
+git flow release finish v1.2.0
+```
+
+```bash
+# When ready for release
+git flow release start v1.2.0
+git flow release finish v1.2.0
+
+# For emergency fixes
+git flow hotfix start critical-security-fix
+# Fix the issue
+git flow hotfix finish critical-security-fix
+# This merges to both main and develop
+```
+````
+
+<div class="mt-4 p-4 bg-green-100 dark:bg-green-900 rounded">
+💡 <strong>Choose Your Workflow:</strong> GitHub Flow for fast iteration, Git Flow for structured releases
+</div>
+
+<!--
+Choose a workflow that matches your team size, deployment frequency, and project complexity. Consistency is more important than perfection.
+-->
+
+---
+
+# Debugging with Git
+
+Git provides powerful tools for finding and fixing bugs. Let's see them in action!
+
+## Git Bisect - Find the Bug-Introducing Commit
+
+````md magic-move {lines: true}
+```bash
+# Scenario: Your tests are failing, but they worked last week
+# You need to find which commit introduced the bug
+git log --oneline  # see recent commits
+```
+
+```bash
+# Scenario: Your tests are failing, but they worked last week
+# You need to find which commit introduced the bug
+git log --oneline
+
+# Start the bisect process
+git bisect start
+```
+
+```bash
+# Start the bisect process
+git bisect start
+
+# Mark current commit as bad (has the bug)
+git bisect bad
+```
+
+```bash
+# Mark current commit as bad (has the bug)
+git bisect bad
+
+# Mark a commit you know was good (e.g., last week)
+git bisect good HEAD~10
+# Git will checkout a commit in the middle
+```
+
+```bash
+# Mark a commit you know was good
+git bisect good HEAD~10
+
+# Git checks out middle commit
+# Test your code (run tests, check functionality)
+npm test  # or whatever your test command is
+```
+
+```bash
+# Test your code (run tests, check functionality)
+npm test  # or whatever your test command is
+
+# If tests pass:
+git bisect good
+# If tests fail:
+git bisect bad
+
+# Git will checkout another commit to test
+```
+
+```bash
+# Keep testing and marking commits as good/bad
+# Git will eventually find the exact commit that introduced the bug
+
+# When found, Git will show:
+# abc123 is the first bad commit
+# commit abc123
+# Author: Someone <someone@example.com>
+# Date: Mon Jan 15 10:30:00 2024
+#     Add new feature that broke everything
+
+# End the bisect session
+git bisect reset
+```
+````
+
+## Git Blame - Find Who Changed What
+
+````md magic-move {lines: true}
+```bash
+# You found a problematic line of code
+# Let's see who wrote it and when
+git blame problematic-file.js
+```
+
+```bash
+# You found a problematic line of code
+# Let's see who wrote it and when
+git blame problematic-file.js
+
+# Output shows: commit, author, date, line number, code
+# abc123 (AnuchitO 2024-01-15 10:30:00 +0000  15) const buggyFunction = () => {
+# def456 (Alice    2024-01-10 14:20:00 +0000  16)   return undefined;
+# ghi789 (Bob      2024-01-12 09:15:00 +0000  17) }
+```
+
+```bash
+# Focus on specific lines that are problematic
+git blame -L 15,20 problematic-file.js
+
+# Ignore whitespace changes to see real changes
+git blame -w problematic-file.js
+```
+
+```bash
+# Get more context about the commit
+git show abc123
+
+# See the full commit that introduced the problematic line
+# This shows the complete change, commit message, and context
+```
+````
+
+## Git Log Detective Work
+
+````md magic-move {lines: true}
+```bash
+# Search for commits related to a specific bug
+git log --grep="authentication"
+git log --grep="login.*bug"  # regex search
+```
+
+```bash
+# Search for commits that added/removed specific code
+git log -S "authenticate"  # find commits that changed this text
+git log -G "function.*login"  # regex search in code changes
+```
+
+```bash
+# See all changes to a specific file
+git log -p auth.js  # shows full diff for each commit
+git log --follow auth.js  # follows file renames
+```
+
+```bash
+# Find when specific lines were added/changed
+git log -L 15,20:auth.js  # track lines 15-20 in auth.js
+# This shows the history of those specific lines
+```
+````
+
+<div class="mt-4 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
+💡 <strong>Pro Tip:</strong> Combine these tools! Use <code>git bisect</code> to find the commit, then <code>git blame</code> and <code>git show</code> to understand the change.
+</div>
+
+<!--
+These debugging tools can save hours of manual searching. Git bisect is particularly powerful for finding regressions in large codebases.
+-->
+
+---
+
+# Git Best Practices
+
+Follow these practices to maintain a clean, professional Git history.
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+## Commit Practices
+✅ **Make atomic commits** - one logical change per commit
+✅ **Write clear messages** - explain what and why
+✅ **Commit frequently** - don't wait too long
+✅ **Test before committing** - ensure code works
+
+❌ **Don't commit broken code** to main branches
+❌ **Don't commit secrets** or sensitive data
+❌ **Don't use generic messages** like "fix"
+
+## Branch Practices
+✅ **Use descriptive names** - `feature/user-authentication`
+✅ **Keep branches focused** - one feature per branch
+✅ **Delete merged branches** - keep repository clean
+✅ **Rebase before merging** - maintain linear history
+
+</div>
+
+<div>
+
+## .gitignore Essentials
+```bash
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+dist/
+build/
+*.o
+*.exe
+
+# Environment files
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+```
+
+## Security Tips
+- Never commit passwords or API keys
+- Use environment variables for secrets
+- Review changes before pushing
+- Use signed commits for verification
+
+</div>
+
+</div>
+
+<!--
+Good Git practices make collaboration smoother and help maintain code quality. These habits become second nature with practice.
+-->
+
+---
+
+# Git Tools and Integrations
+
+Enhance your Git workflow with these tools and integrations.
+
+<div class="grid grid-cols-3 gap-6">
+
+<div>
+
+## GUI Tools
+- **GitKraken** - Visual Git client
+- **Sourcetree** - Free Git GUI
+- **GitHub Desktop** - Simple GitHub integration
+- **Tower** - Professional Git client
+
+## IDE Extensions
+- **GitLens** (VS Code) - Git supercharged
+- **Git Graph** (VS Code) - Visualize branches
+- **Magit** (Emacs) - Git porcelain
+- **Fugitive** (Vim) - Git wrapper
+
+</div>
+
+<div>
+
+## Command Line Tools
+```bash
+# Enhanced git log
+git log --graph --pretty=format:'%h %s'
+
+# Git aliases
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+
+# Tig - text-mode interface
+brew install tig
+tig
+
+# Lazygit - simple terminal UI
+brew install lazygit
+lazygit
+```
+
+</div>
+
+<div>
+
+## Automation & CI/CD
+- **GitHub Actions** - Automated workflows
+- **GitLab CI** - Integrated CI/CD
+- **Jenkins** - Build automation
+- **Husky** - Git hooks for Node.js
+
+## Git Hooks
+```bash
+# Pre-commit hook example
+#!/bin/sh
+npm test
+if [ $? -ne 0 ]; then
+  echo "Tests failed, commit aborted"
+  exit 1
+fi
+```
+
+</div>
+
+</div>
+
+<!--
+The right tools can significantly improve your Git experience. Start with basic command line skills, then add tools that match your workflow and preferences.
+-->
+
+---
+
+# Troubleshooting Common Issues
+
+Every developer encounters Git problems. Here are practical solutions to the most common ones.
+
+## "I committed to the wrong branch!"
+
+````md magic-move {lines: true}
+```bash
+# Oops! You just committed to main instead of a feature branch
+git log --oneline  # see your recent commit
+```
+
+```bash
+# Oops! You just committed to main instead of a feature branch
+git log --oneline  # see your recent commit
+
+# Step 1: Create a new branch pointing to current commit
+git branch feature/user-profile  # new branch with your commit
+```
+
+```bash
+# Step 1: Create a new branch pointing to current commit
+git branch feature/user-profile  # new branch with your commit
+
+# Step 2: Reset main branch to previous commit
+git reset --hard HEAD~1  # remove commit from main
+```
+
+```bash
+# Step 1: Create a new branch pointing to current commit
+git branch feature/user-profile  # new branch with your commit
+
+# Step 2: Reset main branch to previous commit
+git reset --hard HEAD~1  # remove commit from main
+
+# Step 3: Switch to your feature branch
+git checkout feature/user-profile
+git log --oneline  # your commit is safely here!
+```
+````
+
+## "I need to undo my last commit"
+
+````md magic-move {lines: true}
+```bash
+# Different scenarios require different approaches
+git log --oneline -3  # see recent commits
+```
+
+```bash
+# Different scenarios require different approaches
+git log --oneline -3  # see recent commits
+
+# Scenario 1: Keep changes, just undo the commit
+git reset --soft HEAD~1
+git status  # changes are staged and ready to re-commit
+```
+
+```bash
+# Scenario 1: Keep changes, just undo the commit
+git reset --soft HEAD~1
+git status  # changes are staged and ready to re-commit
+
+# Scenario 2: Keep changes but unstage them
+git reset HEAD~1
+git status  # changes are in working directory
+```
+
+```bash
+# Scenario 2: Keep changes but unstage them
+git reset HEAD~1
+git status  # changes are in working directory
+
+# Scenario 3: ⚠️ Completely remove commit and changes
+git reset --hard HEAD~1
+# Everything is gone - use with extreme caution!
+```
+````
+
+## "I accidentally deleted a file"
+
+````md magic-move {lines: true}
+```bash
+# Oh no! You deleted an important file
+ls  # file is missing
+```
+
+```bash
+# Oh no! You deleted an important file
+ls  # file is missing
+
+# Check if it's just unstaged
+git status  # shows deleted file
+```
+
+```bash
+# Check if it's just unstaged
+git status  # shows deleted file
+
+# Restore from the last commit
+git checkout HEAD -- important-file.js
+ls  # file is back!
+```
+
+```bash
+# Restore from the last commit
+git checkout HEAD -- important-file.js
+ls  # file is back!
+
+# Or restore from a specific commit
+git checkout abc123 -- important-file.js
+git log --oneline -- important-file.js  # see file history
+```
+````
+
+<div class="mt-4 p-4 bg-blue-100 dark:bg-blue-900 rounded">
+💡 <strong>Remember:</strong> Git'sreflog is your safety net - it tracks all ref changes for 30 days by default!
+</div>
+
+<!--
+Don't panic when things go wrong! Git is very forgiving, and most "disasters" can be recovered from. The reflog is your safety net for most situations.
+-->
+
+---
+
+# Git Performance and Optimization
+
+Keep your Git repositories fast and efficient with these optimization techniques.
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+## Repository Maintenance
+```bash
+# Clean up unnecessary files
+git gc --aggressive
+
+# Verify repository integrity
+git fsck
+
+# Show repository size
+git count-objects -vH
+
+# Prune remote tracking branches
+git remote prune origin
+
+# Clean untracked files
+git clean -fd
+```
+
+## Large File Handling
+```bash
+# Git LFS for large files
+git lfs install
+git lfs track "*.psd"
+git add .gitattributes
+
+# Shallow clone for large repos
+git clone --depth 1 <url>
+
+# Partial clone (Git 2.19+)
+git clone --filter=blob:none <url>
+```
+
+</div>
+
+<div>
+
+## Configuration Optimization
+```bash
+# Enable parallel processing
+git config --global pack.threads 0
+
+# Increase pack size limit
+git config --global pack.packSizeLimit 2g
+
+# Enable file system monitor
+git config --global core.fsmonitor true
+
+# Use SSH instead of HTTPS
+git config --global url."git@github.com:".insteadOf "https://github.com/"
+```
+
+## Monitoring Repository Health
+- Track repository size growth
+- Monitor clone/fetch times
+- Use `git gc` regularly
+- Consider repository splitting for monorepos
+- Implement LFS for binary assets
+
+</div>
+
+</div>
+
+<!--
+Performance optimization becomes important as repositories grow. Regular maintenance and proper configuration can keep Git operations fast even in large codebases.
+-->
+
+---
+
+# Advanced Git Techniques
+
+Master these advanced techniques to become a Git power user.
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+## Interactive Rebase
+Clean up commit history before sharing:
+
+```bash
+# Rebase last 3 commits
+git rebase -i HEAD~3
+
+# Options in editor:
+# pick = use commit
+# reword = change message
+# edit = modify commit
+# squash = combine with previous
+# drop = remove commit
+```
+
+## Cherry Picking
+Apply specific commits to another branch:
+
+```bash
+# Apply single commit
+git cherry-pick <commit-hash>
+
+# Apply range of commits
+git cherry-pick A..B
+
+# Cherry-pick without committing
+git cherry-pick -n <commit-hash>
+```
+
+</div>
+
+<div>
+
+## Submodules
+Include other repositories as subdirectories:
+
+```bash
+# Add submodule
+git submodule add <url> <path>
+
+# Clone repo with submodules
+git clone --recursive <url>
+
+# Update submodules
+git submodule update --remote
+
+# Remove submodule
+git submodule deinit <path>
+git rm <path>
+```
+
+## Worktrees
+Work on multiple branches simultaneously:
+
+```bash
+# Create new worktree
+git worktree add ../feature-branch feature
+
+# List worktrees
+git worktree list
+
+# Remove worktree
+git worktree remove ../feature-branch
+```
+
+</div>
+
+</div>
+
+<!--
+These advanced techniques are powerful but use them judiciously. Interactive rebase is great for cleaning history, while submodules help manage dependencies.
+-->
+
+---
+
+# Git in Team Environments
+
+Effective Git usage in teams requires coordination and shared practices.
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+## Code Review Process
+1. **Create feature branch** from main
+2. **Implement changes** with good commits
+3. **Push branch** to remote
+4. **Open pull request** with description
+5. **Address review feedback**
+6. **Merge after approval**
+
+## Pull Request Best Practices
+✅ **Clear title and description**
+✅ **Link to relevant issues**
+✅ **Keep changes focused**
+✅ **Include tests**
+✅ **Respond to feedback promptly**
+
+## Branch Protection Rules
+- Require pull request reviews
+- Require status checks to pass
+- Restrict who can push to main
+- Require up-to-date branches
+
+</div>
+
+<div>
+
+## Team Conventions
+```bash
+# Consistent branch naming
+feature/JIRA-123-user-login
+bugfix/fix-memory-leak
+hotfix/security-patch-v1.2.1
+
+# Commit message format
+type(scope): description
+
+feat(auth): add OAuth2 integration
+fix(api): handle null user responses
+docs(readme): update installation steps
+```
+
+## Conflict Resolution Strategy
+1. **Communicate** about overlapping work
+2. **Rebase frequently** to stay current
+3. **Resolve conflicts** thoughtfully
+4. **Test thoroughly** after resolution
+5. **Document** complex merge decisions
+
+## Release Management
+- Use semantic versioning (1.2.3)
+- Tag releases consistently
+- Maintain changelog
+- Automate release notes
+
+</div>
+
+</div>
+
+<!--
+Team success with Git depends on clear processes and good communication. Establish conventions early and stick to them consistently.
+-->
+
+---
+
+# Git Security and Compliance
+
+Protect your code and maintain compliance with these security practices.
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+## Signed Commits
+Verify commit authenticity:
+
+```bash
+# Generate GPG key
+gpg --gen-key
+
+# Configure Git to use GPG
+git config --global user.signingkey <key-id>
+git config --global commit.gpgsign true
+
+# Sign individual commit
+git commit -S -m "Signed commit"
+
+# Verify signatures
+git log --show-signature
+```
+
+## Access Control
+- Use SSH keys for authentication
+- Rotate keys regularly
+- Implement branch protection
+- Audit repository access
+- Use organization-level policies
+
+</div>
+
+<div>
+
+## Secrets Management
+```bash
+# Check for secrets before commit
+git diff --cached | grep -E "(password|secret|key)"
+
+# Remove secrets from history
+git filter-branch --force --index-filter \
+'git rm --cached --ignore-unmatch config/secrets.yml'
+
+# Use git-secrets tool
+git secrets --register-aws
+git secrets --install
+git secrets --scan
+```
+
+## Compliance Considerations
+- Maintain audit trails
+- Document approval processes
+- Implement automated scanning
+- Regular security reviews
+- Backup strategies
+- Data retention policies
+
+</div>
+
+</div>
+
+<!--
+Security should be built into your Git workflow from the beginning. Prevention is much easier than remediation after secrets are exposed.
+-->
 
 ---
 layout: center
 class: text-center
 ---
 
-# Learn More
+# Practice Exercise
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+Let's put it all together with a comprehensive hands-on exercise.
 
-<PoweredBySlidev mt-10 />
+<div class="mt-8 p-6 bg-blue-100 dark:bg-blue-900 rounded-lg">
+
+## Scenario: Team Feature Development
+
+You're working on a team project to add a user authentication system. Practice the complete workflow:
+
+1. **Fork** the practice repository
+2. **Clone** your fork locally
+3. **Create** a feature branch
+4. **Implement** the feature with multiple commits
+5. **Handle** a merge conflict
+6. **Create** a pull request
+7. **Review** and merge
+
+</div>
+
+<div class="mt-6">
+<a href="https://github.com/AnuchitO/git-practice-repo" target="_blank" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+  Start Practice Exercise →
+</a>
+</div>
+
+<!--
+This exercise simulates real-world team development. Take your time and don't hesitate to refer back to previous slides for command reference.
+-->
+
+---
+
+# Git Cheat Sheet
+
+Interactive quick reference for essential Git commands by category.
+
+````md magic-move {lines: true}
+```bash
+# SETUP & CONFIGURATION
+git config --global user.name "AnuchitO"
+git config --global user.email "anuchito@example.com"
+git init
+git clone <url>
+```
+
+```bash
+# BASIC WORKFLOW - Daily Commands
+git status                    # Check repository status
+git add <file>               # Stage specific file
+git add .                    # Stage all changes
+git commit -m "message"      # Commit with message
+git push origin <branch>     # Push to remote
+git pull origin <branch>     # Pull from remote
+```
+
+```bash
+# BRANCHING - Parallel Development
+git branch                   # List branches
+git branch <name>           # Create branch
+git checkout <branch>       # Switch branch
+git checkout -b <branch>    # Create and switch
+git merge <branch>          # Merge branch
+git branch -d <branch>      # Delete branch
+```
+
+```bash
+# HISTORY & INSPECTION
+git log                     # Show commit history
+git log --oneline          # Compact history
+git log --graph            # Visual branch history
+git show <commit>          # Show commit details
+git diff                   # Show unstaged changes
+git diff --staged          # Show staged changes
+```
+
+```bash
+# UNDOING CHANGES - Fix Mistakes
+git checkout -- <file>     # Discard file changes
+git reset HEAD <file>      # Unstage file
+git reset --soft HEAD~1    # Undo commit, keep changes
+git reset --hard HEAD~1    # ⚠️ Undo commit, lose changes
+git revert <commit>        # Safe undo with new commit
+```
+
+```bash
+# STASHING - Temporary Storage
+git stash                  # Save current changes
+git stash pop             # Apply and remove latest stash
+git stash list            # Show all stashes
+git stash apply           # Apply stash without removing
+git stash drop            # Delete a stash
+```
+
+```bash
+# REMOTE REPOSITORIES - Collaboration
+git remote -v             # Show remotes
+git remote add origin <url> # Add remote
+git fetch origin          # Download changes
+git push origin <branch>  # Upload branch
+git pull origin <branch>  # Download and merge
+```
+
+```bash
+# ADVANCED OPERATIONS - Power User
+git rebase <branch>       # Reapply commits on branch
+git rebase -i HEAD~3      # Interactive rebase
+git cherry-pick <commit>  # Apply specific commit
+git bisect start          # Find bug-introducing commit
+git reflog               # Show reference log
+```
+
+```bash
+# USEFUL ALIASES - Save Time
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.cm commit
+git config --global alias.lg "log --oneline --graph"
+```
+````
+
+<div class="mt-4 p-4 bg-blue-100 dark:bg-blue-900 rounded">
+💡 <strong>Bookmark This!</strong> Click through each category to see the commands you need for different Git tasks.
+</div>
+
+<!--
+Keep this cheat sheet handy as you practice. These commands cover 90% of daily Git usage. Bookmark this slide for quick reference!
+-->
+
+---
+
+# Resources and Next Steps
+
+Continue your Git journey with these resources and recommendations.
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+## Essential Resources
+📚 **Books**
+- "Pro Git" by Scott Chacon (free online)
+- "Git Pocket Guide" by Richard Silverman
+
+🌐 **Online Learning**
+- [Git Official Tutorial](https://git-scm.com/docs/gittutorial)
+- [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials)
+- [GitHub Learning Lab](https://lab.github.com/)
+- [Learn Git Branching](https://learngitbranching.js.org/)
+
+🎮 **Interactive Practice**
+- [Git Exercises](https://gitexercises.fracz.com/)
+- [Oh Shit, Git!?!](https://ohshitgit.com/)
+
+</div>
+
+<div>
+
+## Next Steps
+1. **Practice daily** - use Git for all projects
+2. **Explore advanced features** - hooks, submodules, worktrees
+3. **Learn platform-specific features** - GitHub Actions, GitLab CI
+4. **Contribute to open source** - practice collaboration
+5. **Teach others** - solidify your knowledge
+
+## Community
+- Stack Overflow Git tag
+- Reddit r/git
+- Git mailing list
+- Local Git meetups
+- Conference talks and workshops
+
+## Tools to Explore
+- Git hooks for automation
+- CI/CD integration
+- Code quality tools
+- Advanced Git GUIs
+
+</div>
+
+</div>
+
+<!--
+Learning Git is a journey, not a destination. The more you use it, the more comfortable you'll become. Don't be afraid to experiment and make mistakes - that's how you learn!
+-->
+
+---
+layout: center
+class: text-center
+---
+
+# Thank You!
+
+You now have the foundation to use Git effectively in professional software development.
+
+<div class="mt-8 grid grid-cols-3 gap-8">
+
+<div class="p-4">
+<carbon:checkmark-filled class="text-4xl text-green-500 mx-auto mb-2" />
+<h3>Master the Basics</h3>
+<p class="text-sm">You understand Git's core concepts and essential commands</p>
+</div>
+
+<div class="p-4">
+<carbon:logo-git class="text-4xl text-blue-500 mx-auto mb-2" />
+<h3>Collaborate Effectively</h3>
+<p class="text-sm">You can work with teams using branches and pull requests</p>
+</div>
+
+<div class="p-4">
+<carbon:tools class="text-4xl text-purple-500 mx-auto mb-2" />
+<h3>Handle Complex Scenarios</h3>
+<p class="text-sm">You know how to resolve conflicts and recover from mistakes</p>
+</div>
+
+</div>
+
+<div class="mt-12">
+<p class="text-lg mb-4">Remember: Git mastery comes with practice!</p>
+<p class="text-sm opacity-75">Made with ❤️ by AnuchitO using <a href="https://sli.dev" target="_blank">Slidev</a></p>
+</div>
+
+<!--
+Congratulations on completing the Git for Software Engineers course! You now have the knowledge and tools to use Git confidently in your development work. Keep practicing and don't hesitate to refer back to these slides when needed.
+-->
