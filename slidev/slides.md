@@ -118,10 +118,11 @@ Understanding Git's three-tree architecture is crucial for mastering Git.
 ```mermaid
 graph LR
     A[Working Directory] -->|git add| B[Staging Area]
-    B -->|git commit| C[Repository]
+    B -->|git commit| C[Repository - .git folder]
     C -->|git checkout| A
     B -->|git reset| A
     C -->|git reset --hard| A
+    C -->|git pull/push| D[Remote Repository e.g. GitHub, GitLab, etc.]
 ```
 
 <div class="grid grid-cols-3 gap-4 mt-8">
@@ -203,6 +204,9 @@ These commands form the core Git workflow. Practice them until they become muscl
 -->
 
 ---
+transition: slide-up
+mdc: true
+---
 
 # Hands-on: Your First Repository
 
@@ -282,23 +286,20 @@ echo "This is a sample project for learning Git" >> README.md
 git add README.md
 git commit -m "Update README with description"
 ```
+````
 
+<div class="mt-4 p-3 bg-green-100 dark:bg-green-900 rounded text-sm">
+✅ <strong>Success!</strong> Click through each step to see the complete Git workflow!
+</div>
+
+
+---
+
+# Hands-on: Continue
+
+
+````md magic-move {lines: true}
 ```bash
-# Step 1: Initialize a new repository
-mkdir my-project
-cd my-project
-git init
-
-# Step 2: Create initial files
-echo "# My Project" > README.md
-echo "console.log('Hello Git!');" > app.js
-
-# Step 3: Check status and stage files
-git status
-git add .
-
-# Step 4: Make your first commit
-git commit -m "Initial commit: Add README and app.js"
 
 # Step 5: Make changes and commit again
 echo "This is a sample project for learning Git" >> README.md
@@ -318,6 +319,7 @@ git log --graph --oneline --all
 <!--
 This hands-on exercise demonstrates the basic Git workflow. Notice how each commit creates a snapshot of your project at that point in time.
 -->
+
 
 ---
 
