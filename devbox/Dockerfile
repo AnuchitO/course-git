@@ -60,9 +60,10 @@ ENV HOME=/home/devbox
 
 # ---------------- Oh My Zsh ----------------
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
-    && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/home/devbox/.oh-my-zsh/custom}/plugins/zsh-autosuggestions \
+#     && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/home/devbox/.oh-my-zsh/custom}/plugins/zsh-autosuggestions \
     && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/devbox/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
-    && sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' /home/devbox/.zshrc
+    # && sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' /home/devbox/.zshrc
+    && sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting)/' /home/devbox/.zshrc
 
 RUN sed -i '1s|^.*$|PROMPT="%{%n@%m %(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%c%{$reset_color%}"|' /home/devbox/.oh-my-zsh/themes/robbyrussell.zsh-theme
 
