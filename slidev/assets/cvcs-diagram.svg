@@ -1,0 +1,46 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">Centralized Version Control (CVCS)</text>
+
+  <!-- Central Server -->
+  <rect x="175" y="50" width="50" height="60" fill="#4a90e2" stroke="#2c5aa0" stroke-width="2" rx="5"/>
+  <text x="200" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">Server</text>
+
+  <!-- Developer 1 -->
+  <circle cx="80" cy="180" r="25" fill="#7ed321" stroke="#5ba517" stroke-width="2"/>
+  <text x="80" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Dev 1</text>
+
+  <!-- Developer 2 -->
+  <circle cx="200" cy="220" r="25" fill="#7ed321" stroke="#5ba517" stroke-width="2"/>
+  <text x="200" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Dev 2</text>
+
+  <!-- Developer 3 -->
+  <circle cx="320" cy="180" r="25" fill="#7ed321" stroke="#5ba517" stroke-width="2"/>
+  <text x="320" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Dev 3</text>
+
+  <!-- Arrows from developers to server -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Dev 1 to Server -->
+  <line x1="100" y1="165" x2="180" y2="95" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="180" y1="95" x2="100" y2="165" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Dev 2 to Server -->
+  <line x1="200" y1="195" x2="200" y2="115" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="200" y1="115" x2="200" y2="195" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Dev 3 to Server -->
+  <line x1="300" y1="165" x2="220" y2="95" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="220" y1="95" x2="300" y2="165" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Labels -->
+  <text x="200" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">All changes go through central server</text>
+  <text x="200" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#999">Examples: SVN, CVS, Perforce</text>
+</svg>

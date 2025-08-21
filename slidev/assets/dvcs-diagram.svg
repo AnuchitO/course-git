@@ -1,0 +1,45 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">Distributed Version Control (DVCS)</text>
+
+  <!-- Remote Repository -->
+  <rect x="175" y="45" width="50" height="40" fill="#f5a623" stroke="#d68910" stroke-width="2" rx="5"/>
+  <text x="200" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Remote</text>
+
+  <!-- Developer 1 with local repo -->
+  <circle cx="80" cy="150" r="30" fill="#7ed321" stroke="#5ba517" stroke-width="2"/>
+  <rect x="65" y="135" width="30" height="20" fill="#4a90e2" stroke="#2c5aa0" stroke-width="1" rx="3"/>
+  <text x="80" y="147" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white" font-weight="bold">Local</text>
+  <text x="80" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Dev 1</text>
+
+  <!-- Developer 2 with local repo -->
+  <circle cx="200" cy="200" r="30" fill="#7ed321" stroke="#5ba517" stroke-width="2"/>
+  <rect x="185" y="185" width="30" height="20" fill="#4a90e2" stroke="#2c5aa0" stroke-width="1" rx="3"/>
+  <text x="200" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white" font-weight="bold">Local</text>
+  <text x="200" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Dev 2</text>
+
+  <!-- Developer 3 with local repo -->
+  <circle cx="320" cy="150" r="30" fill="#7ed321" stroke="#5ba517" stroke-width="2"/>
+  <rect x="305" y="135" width="30" height="20" fill="#4a90e2" stroke="#2c5aa0" stroke-width="1" rx="3"/>
+  <text x="320" y="147" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white" font-weight="bold">Local</text>
+  <text x="320" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Dev 3</text>
+
+  <!-- Arrows to remote -->
+  <line x1="105" y1="135" x2="180" y2="80" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="200" y1="170" x2="200" y2="90" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="295" y1="135" x2="220" y2="80" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+
+  <!-- Labels -->
+  <text x="200" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">Each developer has complete repository history</text>
+  <text x="200" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#999">Examples: Git, Mercurial, Bazaar</text>
+</svg>

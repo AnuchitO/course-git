@@ -297,6 +297,84 @@ timeline
                    : Junio becomes Git maintainer
                    : Linus focuses back on Linux kernel
 ```
+
+---
+class: text-xs
+---
+
+# Types of Version Control Systems (VSC)
+
+Understanding the evolution of version control helps appreciate Git's advantages.
+
+<div class="grid grid-cols-3 gap-4">
+
+<div class="p-6 border rounded-lg">
+
+##### 📁 Local VCS (LVCS)
+
+<div class="mt-4 mb-4">
+  <img src="/assets/lvcs-diagram.svg" alt="LVCS" class="w-full h-32 object-contain" />
+</div>
+
+- RCS (Revision Control System)
+- SCCS (Source Code Control System)
+- Local file copying
+
+<div class="mt-4 p-3 bg-red-100 dark:bg-red-900 rounded text-sm">
+❌ <strong>Limitations:</strong> No backup, no collaboration
+</div>
+
+</div>
+
+<div class="p-6 border rounded-lg">
+
+##### 🌐 Centralized VCS (CVCS)
+
+<div class="mt-4 mb-4">
+  <img src="/assets/cvcs-diagram.svg" alt="CVCS" class="w-full h-32 object-contain" />
+</div>
+
+- **Subversion (SVN)**
+- **CVS (Concurrent Versions System)**
+- **Perforce**
+- **Team Foundation Server (TFS)**
+
+<div class="mt-4 p-3 bg-yellow-100 dark:bg-yellow-900 rounded text-sm">
+⚠️ <strong>Issues:</strong> Single point of failure, requires network
+</div>
+
+</div>
+
+<div class="p-6 border rounded-lg">
+
+##### 🔄 Distributed VCS (DVCS)
+
+<div class="mt-4 mb-4">
+  <img src="/assets/dvcs-diagram.svg" alt="DVCS" class="w-full h-32 object-contain" />
+</div>
+
+
+- **Git** ⭐
+- **Mercurial (Hg)**
+- **Bazaar**
+
+<div class="mt-4 p-3 bg-green-100 dark:bg-green-900 rounded text-sm">
+✅ <strong>Advantages:</strong> Offline work, multiple backups, flexible workflows
+</div>
+
+</div>
+
+</div>
+
+<div class="mt-8 p-4 bg-blue-100 dark:bg-blue-900 rounded">
+💡 <strong>Evolution:</strong> LVCS → CVCS → DVCS represents the progression toward more flexible and robust version control
+</div>
+
+<!--
+The evolution from local to centralized to distributed version control reflects the growing needs of software development teams. Git's distributed nature makes it incredibly flexible and resilient.
+-->
+
+
 ---
 
 # Git Architecture

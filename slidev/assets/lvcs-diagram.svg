@@ -1,0 +1,55 @@
+<svg width="450" height="320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="450" height="320" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="225" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">Local Version Control (LVCS)</text>
+
+  <!-- Computer/Machine Border -->
+  <rect x="30" y="50" width="390" height="220" fill="none" stroke="#34495e" stroke-width="3" stroke-dasharray="8,4" rx="10"/>
+  <text x="40" y="70" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#34495e">💻 Local Machine</text>
+
+  <!-- Developer/User -->
+  <circle cx="225" cy="100" r="25" fill="#7ed321" stroke="#5ba517" stroke-width="2"/>
+  <text x="225" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Developer</text>
+
+  <!-- Working Directory -->
+  <rect x="80" y="150" width="80" height="50" fill="#f39c12" stroke="#e67e22" stroke-width="2" rx="5"/>
+  <text x="120" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Working</text>
+  <text x="120" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Directory</text>
+
+  <!-- Local Database/Repository -->
+  <rect x="290" y="150" width="80" height="50" fill="#3498db" stroke="#2980b9" stroke-width="2" rx="5"/>
+  <text x="330" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Local</text>
+  <text x="330" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Database</text>
+
+  <!-- Version History -->
+  <rect x="165" y="220" width="120" height="35" fill="#9b59b6" stroke="#8e44ad" stroke-width="2" rx="5"/>
+  <text x="225" y="242" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Version History</text>
+
+  <!-- Arrows -->
+  <line x1="210" y1="115" x2="135" y2="145" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="240" y1="115" x2="315" y2="145" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Bidirectional arrow between working directory and local database -->
+  <line x1="160" y1="175" x2="290" y2="175" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="290" y1="185" x2="160" y2="185" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Arrow from local database to version history -->
+  <line x1="330" y1="200" x2="245" y2="220" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- No Network Icon -->
+  <circle cx="380" cy="90" r="15" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+  <line x1="370" y1="80" x2="390" y2="100" stroke="white" stroke-width="3"/>
+  <text x="380" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#e74c3c" font-weight="bold">No Network</text>
+
+  <!-- Labels -->
+  <text x="225" y="290" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">Single user, local machine only - No collaboration</text>
+  <text x="225" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#999">Examples: RCS, SCCS</text>
+</svg>
