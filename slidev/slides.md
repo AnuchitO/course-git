@@ -225,6 +225,40 @@ Think of Git as a camera: Working Directory is what you see, Staging Area is wha
 
 ---
 
+# Git Installation
+
+<div class="flex justify-center mt-4 mb-8">
+  <img src="/assets/nogit.png" alt="No Git" class="w-full" />
+</div>
+
+<div class="grid grid-cols-3 gap-3 mt-8">
+  <div>
+    <div>
+      <h3><carbon:download class="inline text-2xl mr-2" /> Download Git</h3>
+    </div>
+
+  Visit **[git-scm.com](https://git-scm.com/downloads)** to download Git for your operating system.
+
+  </div>
+
+<div class="col-span-2">
+    <div>
+      <h3><carbon:terminal class="inline text-2xl mr-2" /> Installation</h3>
+    </div>
+
+  - **Windows:** Download installer from  **[git-scm.com](https://git-scm.com/downloads)** and run it
+  - **macOS:** `brew install git`
+  - **Linux:**
+    - `sudo apt install git` (Ubuntu/Debian)
+    - `sudo yum install git` (CentOS/RHEL)
+
+  </div>
+
+</div>
+
+
+---
+
 # Essential Git Commands
 
 Let's start with the fundamental commands every developer needs to know.
