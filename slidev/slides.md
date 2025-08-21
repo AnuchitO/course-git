@@ -189,6 +189,37 @@ This incident led to BitMover revoking the free license that the Linux kernel de
 
 ---
 
+# Git Development Timeline
+
+The 10-Day Git Creation (April 2005)
+
+```mermaid
+timeline
+    title Git Development Timeline
+
+    April 3, 2005  : start Git project
+                   : Linux kernel needs new VCS
+                   : Linus starts Git development
+
+    April 7, 2005  : First Git commit
+                   : Basic repository structure
+                   : SHA-1 hashing implemented
+
+    April 10, 2005 : Merge functionality added
+                   : Branch operations working
+                   : Core Git commands ready
+
+    April 13, 2005 : Git hosting itself
+                   : Self-hosting milestone
+                   : Performance optimizations
+
+    April 16, 2005 : First Linux kernel commit
+                   : Production ready
+                   : Mission accomplished! 🎉
+```
+
+---
+
 # Git Architecture
 
 Understanding Git's three-tree architecture is crucial for mastering Git.
