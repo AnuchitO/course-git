@@ -82,6 +82,9 @@ Before we dive in, let's clarify what we're actually learning about.
   <div class="w-12 h-12 rounded flex items-center justify-center">
     <img src="/assets/bitbucket.png" alt="Bitbucket" class="w-10 h-10" />
   </div>
+<div class="w-12 h-12 rounded flex items-center justify-center bg-black dark:bg-transparent">
+    <img src="/assets/codeberg.png" alt="Bitbucket" class="w-10 h-10" />
+  </div>
 </div>
 
 - **Web services** that host Git repositories
