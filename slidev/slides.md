@@ -189,6 +189,82 @@ This incident led to BitMover revoking the free license that the Linux kernel de
 
 ---
 
+# The Linux Kernel Migration Challenge
+
+Understanding the scale of what Git needed to handle from day one.
+
+<div class="grid grid-cols-2 gap-8 mt-8">
+
+<div>
+
+## Linux Kernel by Numbers (2005)
+
+<div class="space-y-4">
+  <div class="flex justify-between items-center p-3 bg-blue-100 dark:bg-blue-900 rounded">
+    <span class="font-semibold">Lines of Code</span>
+    <span class="text-xl font-bold text-blue-600">~6.6 Million</span>
+  </div>
+
+  <div class="flex justify-between items-center p-3 bg-green-100 dark:bg-green-900 rounded">
+    <span class="font-semibold">Active Developers</span>
+    <span class="text-xl font-bold text-green-600">~1,000+</span>
+  </div>
+
+  <div class="flex justify-between items-center p-3 bg-purple-100 dark:bg-purple-900 rounded">
+    <span class="font-semibold">Files</span>
+    <span class="text-xl font-bold text-purple-600">~17,000</span>
+  </div>
+
+  <div class="flex justify-between items-center p-3 bg-red-100 dark:bg-red-900 rounded">
+    <span class="font-semibold">Commits per Day</span>
+    <span class="text-xl font-bold text-red-600">~100-200</span>
+  </div>
+</div>
+
+</div>
+
+<div>
+
+## The Migration Challenge 🚀
+
+**BitKeeper History to Preserve:**
+- Thousands of commits from hundreds of developers
+- Complex branching and merging patterns
+- Detailed commit metadata and authorship
+
+**Git's First Test:**
+- Handle massive repository size
+- Support distributed development
+- Enable fast branching/merging
+- Maintain complete history integrity
+
+</div>
+
+</div>
+
+---
+
+# Performance Requirements
+
+| **Requirement**   | **Challenge**                   | **Git's Solution**            |
+|---------------|-----------------------------|---------------------------|
+| **Speed**     | Handle 100+ commits/day     | Optimized data structures |
+| **Scale**     | Support 1000+ developers    | Distributed architecture  |
+| **Integrity** | Preserve 3+ years history   | SHA-1 checksums           |
+| **Branching** | Complex feature development | Lightweight branches      |
+
+
+<div class="mt-6 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
+💡 <strong>Amazing Fact:</strong> Git successfully migrated the entire Linux kernel history and became the primary VCS within weeks of its creation!
+</div>
+
+<!--
+The Linux kernel was the perfect stress test for Git. If it could handle one of the world's largest and most active software projects, it could handle anything. This real-world pressure shaped Git's design from the very beginning.
+-->
+
+
+---
+
 # Git Development Timeline
 
 The 10-Day Git Creation (April 2005)
@@ -197,9 +273,9 @@ The 10-Day Git Creation (April 2005)
 timeline
     title Git Development Timeline
 
-    April 3, 2005  : start Git project
+    April 3, 2005  : Linus starts Git project
                    : Linux kernel needs new VCS
-                   : Linus starts Git development
+                   : Initial development begins
 
     April 7, 2005  : First Git commit
                    : Basic repository structure
@@ -214,10 +290,13 @@ timeline
                    : Performance optimizations
 
     April 16, 2005 : First Linux kernel commit
-                   : Production ready
+                   : Production ready for kernel development
                    : Mission accomplished! 🎉
-```
 
+    July 26, 2005  : Linus hands over to Junio Hamano
+                   : Junio becomes Git maintainer
+                   : Linus focuses back on Linux kernel
+```
 ---
 
 # Git Architecture
