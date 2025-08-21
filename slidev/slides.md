@@ -119,13 +119,13 @@ Git is a **distributed version control system** that tracks changes in files and
 
 ## Git vs Others
 
-| Feature     | Git | SVN | Mercurial |
-|-------------|-----|-----|-----------|
-| Distributed | ✅   | ❌   | ✅         |
-| Speed       | ⚡   | 🐌  | ⚡         |
-| Branching   | 🌟  | 😐  | 👍        |
-| Popularity  | 🔥  | 📉  | 📉        |
-
+| Feature     | Git | SVN | Mercurial | BitKeeper |
+|-------------|-----|-----|-----------|-----------|
+| Distributed | ✅   | ❌   | ✅      | ✅        |
+| Speed       | ⚡   | 🐌  | ⚡         | ⚡        |
+| Branching   | 🌟  | 😐  | 👍        | 👍        |
+| Popularity  | 🔥  | 📉  | 📉        | 📉        |
+| Open Source | ✅   | ✅   | ✅      | ❌        |
 </div>
 
 </div>
@@ -136,61 +136,52 @@ Git revolutionized version control by being distributed - every developer has a 
 
 ---
 
-# Git ≠ GitHub/GitLab/Bitbucket
+# Git: [The Stupid Content Tracker](https://github.com/git/git/commits/master/?since=2005-04-07&until=2005-04-07)
 
-**Git** is the version control system. **GitHub, GitLab, Bitbucket** are hosting platforms that use Git.
+Understanding Git's original design philosophy and core architecture.
 
-<div class="grid grid-cols-2 gap-12 mt-8">
+<div class="grid grid-cols-2 gap-8 mt-8">
 
 <div>
 
-## Git (The Tool) 🛠️
-- **Command-line tool** for version control
-- **Distributed** system that works offline
-- **Open source** and free
-- **Local repositories** on your machine
-- **Core functionality**: commits, branches, merges
+## What "Git" Means 🤔
 
-<div class="mt-6 p-4 bg-blue-100 dark:bg-blue-900 rounded">
-💡 You can use Git without any online service!
+According to Linus Torvalds, "git" can mean:
+
+- **Random three-letter combination** that's pronounceable
+- **Stupid, contemptible, despicable** - take your pick from slang dictionary
+- **"Global Information Tracker"** - when you're in a good mood ✨
+- **"Goddamn Idiotic Truckload of Sh*t"** - when it breaks 💥
+
+<div class="mt-2 p-3 bg-yellow-100 dark:bg-yellow-900 rounded text-xs">
+💡 It's a <strong>stupid but extremely fast</strong> directory content manager
 </div>
 
 </div>
 
 <div>
 
-## Git Hosting Platforms 🌐
+Git was created by Linus Torvalds in 2005 to replace BitKeeper, which Linux kernel development was using but wasn't open source.
+
+<div>
 
 <div class="flex items-center gap-4 mb-4">
-  <div class="w-12 h-12 rounded flex items-center justify-center">
-    <img src="/assets/github.png" alt="GitHub" class="w-10 h-10" />
+  <img src="/assets/linus-torvalds.png" alt="Linus Torvalds" class="w-60 rounded-full" />
+  <div>
+    <p class="font-semibold">Linus Torvalds</p>
+    <p class="text-sm opacity-75">Creator of Git & Linux</p>
   </div>
-  <div class="w-12 h-12 rounded flex items-center justify-center">
-    <img src="/assets/gitlab.png" alt="GitLab" class="w-10 h-10" />
-  </div>
-  <div class="w-12 h-12 rounded flex items-center justify-center">
-    <img src="/assets/bitbucket.png" alt="Bitbucket" class="w-10 h-10" />
-  </div>
-</div>
-
-- **Remote hosting** for Git repositories
-- **Web interfaces** for collaboration
-- **Additional features**: Issues, CI/CD, Wiki
-- **Team management** and permissions
-- **Pull/Merge requests** for code review
-
 </div>
 
 </div>
 
-<div class="mt-8 text-center">
-<div class="inline-block p-4 bg-green-100 dark:bg-green-900 rounded-lg">
-<strong>Think of it this way:</strong> Git is like Microsoft Word, GitHub is like Google Docs
 </div>
 </div>
 
 <!--
-This is a crucial distinction! Git works perfectly fine on your local machine. The hosting platforms add collaboration features and remote storage, but Git itself is the powerful version control system we're learning about.
+In 2005, Andrew Tridgell, the creator of Samba and rsync, reverse-engineered the BitKeeper protocol by connecting to a BitKeeper server and analyzing the network traffic. BitMover (the company behind BitKeeper) considered this a violation of their license terms.
+
+This incident led to BitMover revoking the free license that the Linux kernel development community had been using for BitKeeper. Larry McVoy (BitKeeper's creator) was particularly upset about this reverse engineering attempt.
 -->
 
 ---
@@ -217,7 +208,7 @@ Your current files and folders where you make changes
 </div>
 
 <div class="p-4 border rounded">
-<h3>�G Staging Area</h3>
+<h3><img src="/assets/git.png" alt="Git" class="inline w-6 h-6 ml-2" />  Git Staging Area</h3>
 Prepared changes ready to be committed (like a shopping cart)
 </div>
 
