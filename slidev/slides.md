@@ -44,30 +44,55 @@ Master the tool that powers collaboration, version control, and modern software 
 Welcome to Git for Software Engineers! This course will take you from Git basics to advanced workflows used in professional software development.
 -->
 
+<!-- I want to introduction slide that when we talk about git it not github, gitlab, bitbucket those just use git we talk about it itself. -->
+
 ---
-layout: two-cols
-layoutClass: gap-16
----
 
-# Course Agenda
+# Important: Git ≠ GitHub/GitLab/Bitbucket
 
-<Toc minDepth="1" maxDepth="2" />
+Before we dive in, let's clarify what we're actually learning about.
 
-::right::
+<div class="grid grid-cols-2 gap-12 mt-8">
+  <div>
 
-## Learning Objectives
+  ## <img src="/assets/git.png" alt="Git" class="inline w-6 h-6 ml-2" /> Git (the actual tool) 🛠️
+  - **Distributed Version control system**
+  - **Command-line software** that runs locally
+  - **Open source** and completely free
+  - **Works offline** on your machine
+  - **Core functionality**: track changes, branches, history
 
-By the end of this course, you will:
+    <div class="mt-6 p-4 bg-green-100 dark:bg-green-900 rounded">
+    ✅ <strong>This course focuses on Git itself</strong>
+    </div>
 
-✅ **Understand** Git's core concepts and architecture
-✅ **Master** essential Git commands and workflows
-✅ **Collaborate** effectively using branches and remotes
-✅ **Resolve** conflicts and recover from mistakes
-✅ **Apply** professional Git workflows in real projects
+  </div>
 
-<div class="mt-8 p-4 bg-blue-100 dark:bg-blue-900 rounded">
-💡 <strong>Prerequisites:</strong> Basic command line knowledge
+<div>
+
+## Git Hosting Platforms 🌐
+
+<div class="flex items-center gap-4 mb-6">
+  <div class="w-12 h-12 rounded flex items-center justify-center">
+    <img src="/assets/github.png" alt="GitHub" class="w-10 h-10" />
+  </div>
+  <div class="w-12 h-12 rounded flex items-center justify-center">
+    <img src="/assets/gitlab.png" alt="GitLab" class="w-10 h-10" />
+  </div>
+  <div class="w-12 h-12 rounded flex items-center justify-center">
+    <img src="/assets/bitbucket.png" alt="Bitbucket" class="w-10 h-10" />
+  </div>
 </div>
+
+- **Web services** that host Git repositories
+- **Additional features**: Issues, CI/CD, Wiki
+- **Team collaboration** tools
+- **Built on top of Git** - they use Git underneath
+
+</div>
+
+</div>
+
 
 ---
 
@@ -107,6 +132,65 @@ Git is a **distributed version control system** that tracks changes in files and
 
 <!--
 Git revolutionized version control by being distributed - every developer has a complete copy of the project history. This enables offline work and makes collaboration more flexible.
+-->
+
+---
+
+# Git ≠ GitHub/GitLab/Bitbucket
+
+**Git** is the version control system. **GitHub, GitLab, Bitbucket** are hosting platforms that use Git.
+
+<div class="grid grid-cols-2 gap-12 mt-8">
+
+<div>
+
+## Git (The Tool) 🛠️
+- **Command-line tool** for version control
+- **Distributed** system that works offline
+- **Open source** and free
+- **Local repositories** on your machine
+- **Core functionality**: commits, branches, merges
+
+<div class="mt-6 p-4 bg-blue-100 dark:bg-blue-900 rounded">
+💡 You can use Git without any online service!
+</div>
+
+</div>
+
+<div>
+
+## Git Hosting Platforms 🌐
+
+<div class="flex items-center gap-4 mb-4">
+  <div class="w-12 h-12 rounded flex items-center justify-center">
+    <img src="/assets/github.png" alt="GitHub" class="w-10 h-10" />
+  </div>
+  <div class="w-12 h-12 rounded flex items-center justify-center">
+    <img src="/assets/gitlab.png" alt="GitLab" class="w-10 h-10" />
+  </div>
+  <div class="w-12 h-12 rounded flex items-center justify-center">
+    <img src="/assets/bitbucket.png" alt="Bitbucket" class="w-10 h-10" />
+  </div>
+</div>
+
+- **Remote hosting** for Git repositories
+- **Web interfaces** for collaboration
+- **Additional features**: Issues, CI/CD, Wiki
+- **Team management** and permissions
+- **Pull/Merge requests** for code review
+
+</div>
+
+</div>
+
+<div class="mt-8 text-center">
+<div class="inline-block p-4 bg-green-100 dark:bg-green-900 rounded-lg">
+<strong>Think of it this way:</strong> Git is like Microsoft Word, GitHub is like Google Docs
+</div>
+</div>
+
+<!--
+This is a crucial distinction! Git works perfectly fine on your local machine. The hosting platforms add collaboration features and remote storage, but Git itself is the powerful version control system we're learning about.
 -->
 
 ---
