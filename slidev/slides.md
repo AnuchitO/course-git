@@ -193,13 +193,13 @@ This incident led to BitMover revoking the free license that the Linux kernel de
 
 Understanding the scale of what Git needed to handle from day one.
 
-<div class="grid grid-cols-2 gap-8 mt-8">
+<div class="grid grid-cols-2 gap-4 mt-2">
 
 <div>
 
 ## Linux Kernel by Numbers (2005)
 
-<div class="space-y-4">
+<div class="space-y-4 mt-2">
   <div class="flex justify-between items-center p-3 bg-blue-100 dark:bg-blue-900 rounded">
     <span class="font-semibold">Lines of Code</span>
     <span class="text-xl font-bold text-blue-600">~6.6 Million</span>
