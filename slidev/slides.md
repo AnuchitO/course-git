@@ -345,7 +345,7 @@ Understanding the evolution of version control helps appreciate Git's advantages
 
 </div>
 
-<div class="p-6 border rounded-lg">
+<div class="p-6 border-4 border-green-500 rounded-lg">
 
 ##### 🔄 Distributed VCS (DVCS)
 
