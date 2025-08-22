@@ -469,14 +469,11 @@ Let's start with the fundamental commands every developer needs to know.
 # Initialize a new repository
 git init
 
-# Clone an existing repository
-git clone <url>
-
 # Check repository status
 git status
 
 # View commit history
-git log --oneline
+git log
 ```
 
 </div>
@@ -487,14 +484,12 @@ git log --oneline
 ```bash
 # Stage files for commit
 git add <file>
-git add .  # stage all changes
 
 # Commit staged changes
 git commit -m "Your message"
 
-# View differences
-git diff
-git diff --staged
+# View commit history
+git log
 ```
 
 </div>
