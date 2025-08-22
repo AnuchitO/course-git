@@ -382,6 +382,12 @@ The evolution from local to centralized to distributed version control reflects 
 Understanding Git's three-tree architecture is crucial for mastering Git.
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#00e5ff"
+  }
+}}%%
 graph LR
     A[Working Directory] -->|git add| B[Staging Area]
     B -->|git commit| C[Repository - .git folder]
@@ -400,12 +406,12 @@ Your current files and folders where you make changes
 
 <div class="p-4 border rounded">
 <h3><img src="/assets/git.png" alt="Git" class="inline w-6 h-6 ml-2" />  Git Staging Area</h3>
-Prepared changes ready to be committed (like a shopping cart)
+Prepared changes ready to be committed <br/>(like a shopping cart)
 </div>
 
 <div class="p-4 border rounded">
 <h3>📚 Repository</h3>
-Permanent storage of committed snapshots (.git folder)
+Permanent storage of committed snapshots <br/> (.git folder)
 </div>
 
 </div>
