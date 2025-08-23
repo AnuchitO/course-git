@@ -492,9 +492,11 @@ Git commands are divided into **high-level commands** (porcelain) and **low-leve
 Low-level commands that manipulate Git's internal structures. Rarely used directly
 
   <ul>
+    <li><code>git cat-file</code></li>
     <li><code>git apply</code></li>
     <li><code>git commit-tree</code></li>
     <li><code>git hash-object</code></li>
+    <li><code>git ls-tree</code></li>
   </ul>
 
   <div class="mt-6 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
@@ -553,6 +555,61 @@ git log
 <!--
 These commands form the core Git workflow. Practice them until they become muscle memory. The key is understanding what each command does to the three trees.
 -->
+
+---
+
+# Git Cat-File - Exploring Git Objects
+
+a powerful plumbing tool that lets you examine the raw contents and metadata of Git objects like blobs, trees, commits, and tags.
+
+<div class="grid grid-cols-2 gap-8">
+
+  <div>
+
+  - **Blobs** - file contents
+  - **Trees** - directory structures
+  - **Commits** - snapshots with metadata
+  - **Tags** - annotated references
+
+  ```bash
+  # Basic syntax
+  git cat-file <type> <object>
+  git cat-file -t <object>  # show type
+  git cat-file -s <object>  # show size
+  git cat-file -p <object>  # pretty print
+  ```
+
+  </div>
+    <div class="flex justify-center mt-8">
+      <img src="/assets/git-object-model.png" alt="Git Object Model" class="w-90 bg-transparent" />
+    </div>
+  <div>
+
+  </div>
+</div>
+
+
+---
+
+# Git Object Model
+
+everything in Git is stored as objects (blobs for files, trees for directories, commits for snapshots) linked by SHA-1 hashes.
+
+<div class="flex justify-center">
+
+<div class="flex justify-center">
+  <img src="/assets/git-object.png" alt="Git Object Model" class="w-110" />
+</div>
+</div>
+
+<div class="mt-2 p-4 bg-blue-100 dark:bg-blue-900 rounded">
+💡 <strong>Key Insight:</strong> store objects - commits, trees, and blobs form a directed acyclic graph (DAG)
+</div>
+
+<!--
+Git's object model is elegant in its simplicity. Every piece of data is stored as an object with a SHA-1 hash. Understanding this model helps you grasp why Git operations work the way they do.
+-->
+
 
 ---
 transition: slide-up
