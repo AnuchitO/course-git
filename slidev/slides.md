@@ -21,13 +21,9 @@ mdc: true
 Master the tool that powers collaboration, version control, and modern software development.
 
 <div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover:bg="white hover:bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
+  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover:bg="gray hover:bg-opacity-1" >
+    by AnuchitO
   </span>
-</div>
-
-<div class="pt-4">
-  <span class="text-sm opacity-75">by AnuchitO</span>
 </div>
 
 <div class="abs-br m-6 flex gap-2">
