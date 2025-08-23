@@ -449,7 +449,61 @@ Think of Git as a camera: Working Directory is what you see, Staging Area is wha
 
 </div>
 
+---
 
+# Porcelain and Plumbing
+
+Git commands are divided into **high-level commands** (porcelain) and **low-level commands** (plumbing).
+
+<div class="grid grid-cols-2 gap-12 mt-8">
+  <div>
+
+  ## Porcelain Commands 🚿
+
+ you will use most often as a developer to interact with your code
+
+<div class="grid grid-cols-2 gap-12 mt-8">
+  <div>
+    <ul>
+      <li><code>git status</code></li>
+      <li><code>git add</code></li>
+      <li><code>git commit</code></li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li><code>git push</code></li>
+      <li><code>git pull</code></li>
+      <li><code>git log</code></li>
+    </ul>
+  </div>
+  </div>
+
+  <div class="mt-6 p-4 bg-green-100 dark:bg-green-900 rounded">
+  ✅ <strong>These are your daily Git tools</strong>
+  </div>
+
+  </div>
+
+<div>
+
+## Plumbing Commands 🔧
+
+Low-level commands that manipulate Git's internal structures. Rarely used directly
+
+  <ul>
+    <li><code>git apply</code></li>
+    <li><code>git commit-tree</code></li>
+    <li><code>git hash-object</code></li>
+  </ul>
+
+  <div class="mt-6 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
+    Understanding plumbing helps with porcelain
+  </div>
+
+</div>
+
+</div>
 ---
 
 # Essential Git Commands
