@@ -25,6 +25,12 @@ run:
 		-w $(WORKDIR) \
 		$(IMAGE_NAME) /bin/zsh
 
+# Run exec
+.PHONY: exec
+exec:
+	docker exec -it $(CONTAINER_NAME) /bin/zsh
+
+
 # Start container in background (for long-running use)
 .PHONY: start
 start:
