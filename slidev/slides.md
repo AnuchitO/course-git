@@ -736,7 +736,7 @@ git ls-tree <tree-hash> # tree hash of first commit
 
 # Git Object Model
 
-everything in Git is stored as objects (blobs for files, trees for directories, commits for snapshots) linked by SHA-1 hashes.
+everything in Git is stored as objects (blobs for files, trees for directories, commits for **snapshots**) linked by SHA-1 hashes.
 
 <div class="flex justify-center">
 
@@ -745,7 +745,7 @@ everything in Git is stored as objects (blobs for files, trees for directories, 
 </div>
 </div>
 
-<div class="mt-2 p-4 bg-blue-100 dark:bg-blue-900 rounded">
+<div class="mt-2 p-2 bg-blue-100 dark:bg-blue-900 rounded">
 💡 <strong>Key Insight:</strong> store objects - commits, trees, and blobs form a directed acyclic graph (DAG)
 </div>
 
