@@ -539,6 +539,66 @@ git init # the default branch should be `main`
 
 ---
 
+# Exploring .git & First Commit
+
+#### 1. Explore the .git directory
+```bash
+ls -la .git # See what's inside the .git directory
+```
+
+#### 2. Create your first commit
+```bash
+echo "# ThaiChat - A most popular real-time chat application in Thailand" > README.md
+git status
+
+git add README.md
+git status
+
+git commit -m "A: my first commit"
+```
+
+#### 3. Config user name and email
+```bash
+  git config --global user.email "you@example.com" # you can try with out --global and commit in demo/ folder see the difference
+  git config --global user.name "Your Name"
+```
+
+#### 4. then we can comit
+```bash
+git commit -m "A: my first commit"
+git log
+```
+
+---
+
+# Git Config: Local vs Global
+
+option `--global` will apply to all repositories
+
+#### Local Configuration (Specific to current repository, stored in .git/config)
+```bash
+# Navigate to your project
+cd thaichat/
+
+cat .git/config
+
+# Check effective config
+git config --list
+```
+
+#### Verify in Different Directories
+```bash
+# In thaichat/
+cd ~/projects/thaichat
+git config user.email  # Shows dev@thaichat.example
+
+# In demo/
+cd ~/projects/demo
+git config user.email  # Shows you@example.com
+```
+
+---
+
 # Git Configuration Scopes
 
 Git has three configuration levels that determine where settings are stored and their priority.
