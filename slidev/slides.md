@@ -541,12 +541,14 @@ git init # the default branch should be `main`
 
 # Exploring .git & First Commit
 
-#### 1. Explore the .git directory
+##### 1. Explore the .git directory
 ```bash
 ls -la .git # See what's inside the .git directory
+git status
+git log
 ```
 
-#### 2. Create your first commit
+##### 2. Create your first commit
 ```bash
 echo "# ThaiChat - A most popular real-time chat application in Thailand" > README.md
 git status
@@ -557,13 +559,13 @@ git status
 git commit -m "A: my first commit"
 ```
 
-#### 3. Config user name and email
+##### 3. Config user name and email
 ```bash
   git config --global user.email "you@example.com" # you can try with out --global and commit in demo/ folder see the difference
   git config --global user.name "Your Name"
 ```
 
-#### 4. then we can comit
+##### 4. then we can comit
 ```bash
 git commit -m "A: my first commit"
 git log
@@ -704,34 +706,31 @@ a powerful plumbing tool that lets you examine the raw contents and metadata of 
 
 # Git Object Inspection
 
-## Using `git cat-file` with ThaiChat
+#### Using `git cat-file` with ThaiChat
 
 ```bash
 # 1. Navigate to ThaiChat and check status
 cd ~/work/thaichat
 git status
 
-git --no-pager log
+git --no-pager log --parents --oneline
 
-echo "A modern chat application built with Go and WebSockets" >> content.md
-git commit -m "docs: add initial content"
+git cat-file -p <commit-hash> # could be <commit-hash>, <tree-hash>, <blob-hash>
+ls -al .git/
 
-git log --oneline  # Copy the commit hash
+echo "Most popular chat for Thai people" >> chat.md
+git add chat.md
+git commit -m "B: most popular chat"
 
-git cat-file -p <commit-hash>  # Shows tree and author info
+git --no-pager log --parents --oneline  # Copy the commit hash
 
-git cat-file -p <tree-hash>  # Shows the README.md blob hash
-
-git cat-file -p <blob-hash>  # Shows README.md content
-
-cp README.md README-copy.md
-git add README-copy.md
-git commit -m "docs: add README copy"
+git cat-file -p <commit-hash>  # then cat tree-hash to see blob objects
 
 git ls-tree HEAD  # Both README files point to same blob hash
+git ls-tree <tree-hash> # tree hash of first commit
 ```
 
-💡 **Key Insight**: Git's content-addressable storage means identical files are stored only once, saving space and maintaining history efficiently.
+##### 💡 **Key Insight**: Git's content-addressable storage means identical files are stored only once, saving space and maintaining history efficiently.
 
 ---
 
