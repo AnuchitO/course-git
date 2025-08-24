@@ -579,22 +579,24 @@ option `--global` will apply to all repositories
 ```bash
 # Navigate to your project
 cd thaichat/
-
 cat .git/config
+git config --list # Check effective config
 
-# Check effective config
-git config --list
+cd demo/
+cat .git/config
+git config --local user.email "email@demo.com" # or `git config user.email "email@demo.com"`
+git config --local user.name "Demo" # or `git config user.name "Demo"`
 ```
 
 #### Verify in Different Directories
 ```bash
 # In thaichat/
 cd ~/projects/thaichat
-git config user.email  # Shows dev@thaichat.example
+git config user.email  # Shows dev@thaichat.com
 
 # In demo/
 cd ~/projects/demo
-git config user.email  # Shows you@example.com
+git config user.email  # Shows email@demo.com
 ```
 
 ---
@@ -700,6 +702,39 @@ a powerful plumbing tool that lets you examine the raw contents and metadata of 
 
 ---
 
+# Git Object Inspection
+
+## Using `git cat-file` with ThaiChat
+
+```bash
+# 1. Navigate to ThaiChat and check status
+cd ~/work/thaichat
+git status
+
+git --no-pager log
+
+echo "A modern chat application built with Go and WebSockets" >> content.md
+git commit -m "docs: add initial content"
+
+git log --oneline  # Copy the commit hash
+
+git cat-file -p <commit-hash>  # Shows tree and author info
+
+git cat-file -p <tree-hash>  # Shows the README.md blob hash
+
+git cat-file -p <blob-hash>  # Shows README.md content
+
+cp README.md README-copy.md
+git add README-copy.md
+git commit -m "docs: add README copy"
+
+git ls-tree HEAD  # Both README files point to same blob hash
+```
+
+💡 **Key Insight**: Git's content-addressable storage means identical files are stored only once, saving space and maintaining history efficiently.
+
+---
+
 # Git Object Model
 
 everything in Git is stored as objects (blobs for files, trees for directories, commits for snapshots) linked by SHA-1 hashes.
@@ -719,9 +754,6 @@ everything in Git is stored as objects (blobs for files, trees for directories, 
 Git's object model is elegant in its simplicity. Every piece of data is stored as an object with a SHA-1 hash. Understanding this model helps you grasp why Git operations work the way they do.
 -->
 
----
-transition: slide-up
-mdc: true
 ---
 
 # Hands-on: Your First Repository
