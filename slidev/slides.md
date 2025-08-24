@@ -120,11 +120,11 @@ Git is a **distributed version control system** that tracks changes in files and
 
 | Feature     | Git | SVN | Mercurial | BitKeeper |
 |-------------|-----|-----|-----------|-----------|
-| Distributed | ✅   | ❌   | ✅      | ✅        |
-| Speed       | ⚡   | 🐌  | ⚡         | ⚡        |
+| Distributed | ✅   | ❌   | ✅         | ✅         |
+| Speed       | ⚡   | 🐌  | ⚡         | ⚡         |
 | Branching   | 🌟  | 😐  | 👍        | 👍        |
 | Popularity  | 🔥  | 📉  | 📉        | 📉        |
-| Open Source | ✅   | ✅   | ✅      | ❌        |
+| Open Source | ✅   | ✅   | ✅         | ❌         |
 </div>
 
 </div>
@@ -242,12 +242,12 @@ Understanding the scale of what Git needed to handle from day one.
 
 # Performance Requirements
 
-| **Requirement**   | **Challenge**                   | **Git's Solution**            |
-|---------------|-----------------------------|---------------------------|
-| **Speed**     | Handle 100+ commits/day     | Optimized data structures |
-| **Scale**     | Support 1000+ developers    | Distributed architecture  |
-| **Integrity** | Preserve 3+ years history   | SHA-1 checksums           |
-| **Branching** | Complex feature development | Lightweight branches      |
+| **Requirement** | **Challenge**               | **Git's Solution**        |
+|-----------------|-----------------------------|---------------------------|
+| **Speed**       | Handle 100+ commits/day     | Optimized data structures |
+| **Scale**       | Support 1000+ developers    | Distributed architecture  |
+| **Integrity**   | Preserve 3+ years history   | SHA-1 checksums           |
+| **Branching**   | Complex feature development | Lightweight branches      |
 
 
 <div class="mt-6 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
@@ -451,6 +451,66 @@ Think of Git as a camera: Working Directory is what you see, Staging Area is wha
 
 ---
 
+# Essential Git Commands
+
+Let's start with the fundamental commands every developer needs to know.
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+## Getting Started
+```bash
+# Initialize a new repository
+git init
+
+# Check repository status
+git status
+
+# View commit history
+git log
+```
+
+</div>
+
+<div>
+
+## Basic Workflow
+```bash
+# Stage files for commit
+git add <file>
+
+# Commit staged changes
+git commit -m "Your message"
+
+# View commit history
+git log
+```
+
+</div>
+
+</div>
+
+<div class="mt-8 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
+💡 <strong>Pro Tip:</strong> Use <code>git status</code> frequently - it's your best friend for understanding what's happening!
+</div>
+
+<!--
+These commands form the core Git workflow. Practice them until they become muscle memory. The key is understanding what each command does to the three trees.
+-->
+
+---
+
+# Git Configuration Scopes
+
+Git has three configuration levels that determine where settings are stored and their priority.
+
+<div class="flex justify-center">
+  <img src="/assets/config-scope.svg" alt="Git Configuration Scopes" class="w-120" />
+</div>
+
+---
+
 # Porcelain and Plumbing
 
 Git commands are divided into **high-level commands** (porcelain) and **low-level commands** (plumbing).
@@ -506,55 +566,6 @@ Low-level commands that manipulate Git's internal structures. Rarely used direct
 </div>
 
 </div>
----
-
-# Essential Git Commands
-
-Let's start with the fundamental commands every developer needs to know.
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Getting Started
-```bash
-# Initialize a new repository
-git init
-
-# Check repository status
-git status
-
-# View commit history
-git log
-```
-
-</div>
-
-<div>
-
-## Basic Workflow
-```bash
-# Stage files for commit
-git add <file>
-
-# Commit staged changes
-git commit -m "Your message"
-
-# View commit history
-git log
-```
-
-</div>
-
-</div>
-
-<div class="mt-8 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
-💡 <strong>Pro Tip:</strong> Use <code>git status</code> frequently - it's your best friend for understanding what's happening!
-</div>
-
-<!--
-These commands form the core Git workflow. Practice them until they become muscle memory. The key is understanding what each command does to the three trees.
--->
 
 ---
 
@@ -609,7 +620,6 @@ everything in Git is stored as objects (blobs for files, trees for directories, 
 <!--
 Git's object model is elegant in its simplicity. Every piece of data is stored as an object with a SHA-1 hash. Understanding this model helps you grasp why Git operations work the way they do.
 -->
-
 
 ---
 transition: slide-up
