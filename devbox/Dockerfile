@@ -29,6 +29,12 @@ RUN apt-get update && apt-get install -y \
     libc6 \
     libstdc++6 \
     libgcc-12-dev \
+    # Thai language support
+    fonts-thai-tlwg \
+    fonts-noto-color-emoji \
+    libthai0 \
+    libthai-dev \
+    libicu-dev \
     # utils
     unzip \
     tar \
@@ -44,12 +50,16 @@ RUN apt-get update && apt-get install -y \
 
 # ---------------- Locale ----------------
 RUN apt-get update && apt-get install -y locales \
-    && locale-gen en_US.UTF-8 \
+    && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "th_TH.UTF-8 UTF-8" >> /etc/locale.gen \
+    && locale-gen \
+    && update-locale LANG=en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
 
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
+ENV LC_CTYPE=en_US.UTF-8
 
 # ---------------- Dev user ----------------
 RUN useradd -ms /bin/zsh devbox \
@@ -74,7 +84,11 @@ RUN echo "HISTSIZE=10000" >> /home/devbox/.zshrc \
     && echo "setopt HIST_IGNORE_DUPS" >> /home/devbox/.zshrc \
     && echo "setopt INC_APPEND_HISTORY" >> /home/devbox/.zshrc \
     && echo "export LESS='-R'" >> /home/devbox/.zshrc \
-    && echo "export PAGER=less" >> /home/devbox/.zshrc
+    && echo "export PAGER=less" >> /home/devbox/.zshrc \
+    && echo "export TERM=xterm-256color" >> /home/devbox/.zshrc \
+    && echo "export LANG=en_US.UTF-8" >> /home/devbox/.zshrc \
+    && echo "export LC_ALL=en_US.UTF-8" >> /home/devbox/.zshrc \
+    && echo "export LC_CTYPE=en_US.UTF-8" >> /home/devbox/.zshrc
 
 # Set a hostname
 ENV HOSTNAME=uedwiak
