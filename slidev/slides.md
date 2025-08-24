@@ -718,8 +718,8 @@ git --no-pager log --parents --oneline
 git cat-file -p <commit-hash> # could be <commit-hash>, <tree-hash>, <blob-hash>
 ls -al .git/
 
-echo "Most popular chat for Thai people" >> chat.md
-git add chat.md
+echo "Most popular chat for Thai people" >> note.md
+git add note.md
 git commit -m "B: most popular chat"
 
 git --no-pager log --parents --oneline  # Copy the commit hash
@@ -755,91 +755,80 @@ Git's object model is elegant in its simplicity. Every piece of data is stored a
 
 ---
 
-# Hands-on: Your First Repository
+# Hands-on: Create Chat Channels Configuration
 
-Let's create your first Git repository and make some commits step by step.
+Let's create a channels configuration for ThaiChat and track it with Git.
 
 ````md magic-move {lines: true}
 ```bash
-# Step 1: Initialize a new repository
-mkdir my-project
-cd my-project
-git init
-```
-
-```bash
-# Step 1: Initialize a new repository
-mkdir my-project
-cd my-project
-git init
-
-# Step 2: Create initial files
-echo "# My Project" > README.md
-echo "console.log('Hello Git!');" > app.js
-```
-
-```bash
-# Step 1: Initialize a new repository
-mkdir my-project
-cd my-project
-git init
-
-# Step 2: Create initial files
-echo "# My Project" > README.md
-echo "console.log('Hello Git!');" > app.js
-
-# Step 3: Check status and stage files
+# Step 1: Create directory structure
+mkdir -p chat
 git status
-git add .
 ```
 
 ```bash
-# Step 1: Initialize a new repository
-mkdir my-project
-cd my-project
-git init
-
-# Step 2: Create initial files
-echo "# My Project" > README.md
-echo "console.log('Hello Git!');" > app.js
-
-# Step 3: Check status and stage files
+# Step 1: Create directory structure
+mkdir -p chat
 git status
-git add .
 
-# Step 4: Make your first commit
-git commit -m "Initial commit: Add README and app.js"
+# Step 2: Create channels.csv with headers
+echo "id,name,description,is_private,created_at" > chat/channels.csv
 ```
 
 ```bash
-# Step 1: Initialize a new repository
-mkdir my-project
-cd my-project
-git init
-
-# Step 2: Create initial files
-echo "# My Project" > README.md
-echo "console.log('Hello Git!');" > app.js
-
-# Step 3: Check status and stage files
+# Step 1: Create directory structure
+mkdir -p chat
 git status
-git add .
 
-# Step 4: Make your first commit
-git commit -m "Initial commit: Add README and app.js"
+# Step 2: Create channels.csv with headers
+echo "id,name,description,is_private,created_at" > chat/channels.csv
 
-# Step 5: Make changes and commit again
-echo "This is a sample project for learning Git" >> README.md
-git add README.md
-git commit -m "Update README with description"
+# Step 3: Add ThaiChat channels into channels.csv
+1,general,General discussion,false,2025-08-25T10:00:00+07:00
+2,random,Random chat,false,2025-08-25T10:05:00+07:00
+3,private,Private chat,true,2025-08-25T10:10:00+07:00
+```
+
+```bash
+# Step 1: Create directory structure
+mkdir -p chat
+git status
+
+# Step 2: Create channels.csv with headers
+echo "id,name,description,is_private,created_at" > chat/channels.csv
+
+# Step 3: Add ThaiChat channels into channels.csv
+1,general,General discussion,false,2025-08-25T10:00:00+07:00
+2,random,Random chat,false,2025-08-25T10:05:00+07:00
+3,private,Private chat,true,2025-08-25T10:10:00+07:00
+
+# Step 4: Initialize git and add files
+git add chat/channels.csv
+git commit -m "C: feat: add initial chat channels"
+```
+
+```bash
+# Step 1: Create directory structure
+mkdir -p chat
+git status
+
+# Step 2: Create channels.csv with headers
+echo "id,name,description,is_private,created_at" > chat/channels.csv
+
+# Step 3: Add ThaiChat channels into channels.csv
+1,general,General discussion,false,2025-08-25T10:00:00+07:00
+2,random,Random chat,false,2025-08-25T10:05:00+07:00
+3,private,Private chat,true,2025-08-25T10:10:00+07:00
+
+# Step 4: Initialize git and add files
+git add chat/channels.csv
+git commit -m "C: feat: add initial chat channels"
+
+# Step 5: View the file and git log
+cat channels.csv
+git log --oneline
 ```
 ````
-
-<div class="mt-4 p-3 bg-green-100 dark:bg-green-900 rounded text-sm">
-✅ <strong>Success!</strong> Click through each step to see the complete Git workflow!
-</div>
-
-
 ---
 
 # Hands-on: Continue
