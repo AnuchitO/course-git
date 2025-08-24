@@ -501,6 +501,44 @@ These commands form the core Git workflow. Practice them until they become muscl
 
 ---
 
+
+#### 📝 Assignment: Create Your First Repository
+
+**Task 1:** Create a new project folder and initialize Git
+
+```bash
+mkdir thaichat # Step 1: Create a new folder called 'thaichat'
+cd thaichat # Step 2: Navigate into the folder
+
+git init # Step 3: Initialize Git repository
+# Step 4: Verify Git initialization
+ls -la  # You should see a .git folder
+
+git branch -m main # rename current branch to main
+```
+
+<div v-click>
+
+**Task 2:** Configure default branch to be `main`
+
+```bash
+# Configure Git to use 'main' as the default branch name
+git config --global init.defaultBranch main
+
+# Navigate back to parent directory and create a new demo project
+cd ../
+mkdir demo
+cd demo
+
+# Initialize Git repository (should not show hints about default branch)
+git init # the default branch should be `main`
+```
+
+</div>
+
+
+---
+
 # Git Configuration Scopes
 
 Git has three configuration levels that determine where settings are stored and their priority.
