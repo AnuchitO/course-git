@@ -831,8 +831,9 @@ git log --oneline
 ````
 ---
 
-# Hands-on: Continue
+# Exercise: Interactively Add Files to Git
 
+user `git add -p` to add server logic to Git.
 
 ````md magic-move {lines: true}
 ```bash
