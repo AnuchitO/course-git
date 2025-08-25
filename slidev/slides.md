@@ -1819,7 +1819,7 @@ git rerere diff
 
 ---
 
-# Exercise: Use Rerere
+# Exercise: Use rerere
 
 <div class="grid grid-cols-2 gap-4">
 <div>
@@ -1876,6 +1876,56 @@ git rebase main
 ```bash
 git rerere diff
 ```
+
+</div>
+</div>
+
+---
+
+# Git Interactive Rebase
+
+Rewrites commit history, Reorders, combines, or modifies commits, Perfect for cleaning up before sharing
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+### Basic Commands
+
+```bash
+git rebase -i HEAD~3
+# Or
+git rebase -i <commit-hash>
+```
+
+### Common Actions
+
+- `pick`: Keep commit as is
+- `reword`: Change commit message
+- `edit`: Pause for amendments
+- `squash`: Combine with previous commit
+- `drop`: Remove commit
+
+</div>
+
+<div>
+
+### Example Workflow
+
+**Start interactive rebase**:
+
+```bash
+git rebase -i HEAD~3
+```
+
+**Edit the list**:
+
+```bash
+pick a1b2c3d Add login form
+reword b2c3d4e Fix typo
+squash c3d4e5f Update styles
+```
+
+> The order of the commits in the interactive rebase will be from oldest to newest, unlike `git log` where the order is from newest to oldest.
 
 </div>
 </div>
