@@ -1174,6 +1174,71 @@ git log --oneline --graph --all
 
 ---
 
+# Rebase
+
+Let's say you're working on a feature branch `chatui` in ThaiChat, but the `main` branch has been updated with important bug fixes. let's incorporate these changes into `chatui` branch while keeping a clean history.
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+### Before Rebase
+```mermaid
+gitGraph
+    commit id: "A"
+    commit id: "B"
+    branch chat-ui
+    commit id: "C"
+    commit id: "D"
+    checkout main
+    commit id: "E"
+    commit id: "F"
+```
+
+### After Rebase
+```mermaid
+gitGraph
+    commit id: "A"
+    commit id: "B"
+    commit id: "E"
+    commit id: "F"
+    branch chat-ui
+    commit id: "C'"
+    commit id: "D'"
+```
+
+</div>
+
+<div>
+
+```bash
+# add some change to main branch
+$ echo "# thai chat is awesome" >> README.md
+$ git add README.md
+$ git commit -m "M: update README with project description"
+
+# switch to feature branch
+$ git switch -c chatui
+$ mkdir web/
+$ echo "# thai chat ui is awesome" >> web/ui.md
+$ git add web/ui.md
+$ git commit -m "N: add UI documentation"
+
+$ git rebase main
+
+# If there are conflicts, resolve them and continue
+$ git add <file>
+$ git rebase --continue
+
+# log to see the changes
+$ git log --oneline --graph --all
+```
+
+</div>
+
+</div>
+---
+
 ## Merge vs Rebase
 
 | Merge                    | Rebase            |
