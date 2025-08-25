@@ -1015,12 +1015,12 @@ git add users.csv
 git commit -m "H: add users.csv header"
 
 # 2. Add anuchito user
-echo 'user1,anuchito,Anuchit O,👨‍💻,online,2025-08-25T10:30:00Z' >> users.csv
+echo 'user1,anuchito,AnuchitO,AO,online,2025-08-25T10:30:00Z' >> users.csv
 git add users.csv
 git commit -m "I: add anuchito user"
 
 # 3. Add thai_dev user
-echo 'user2,thai_dev,Thai Dev,🤖,away,2025-08-25T09:45:00Z' >> users.csv
+echo 'user2,thai_dev,Thai Dev,TD,away,2025-08-25T09:45:00Z' >> users.csv
 git add users.csv
 git commit -m "J: add thai_dev user"
 ```
@@ -1582,12 +1582,11 @@ gpg --export --armor YOUR_KEY_ID
 # copy the output
 # go to GitLab → User Settings → GPG Keys
 ```
-
-
 </div>
 </div>
 
 ---
+
 # Handling Merge Conflicts
 
 Conflicts occur when Git can't automatically merge changes. Let's see how to resolve them step by step.
@@ -1674,6 +1673,50 @@ git commit  # Git will create a merge commit message
 <!--
 Conflicts are a normal part of collaborative development. The key is to stay calm, understand what each side is trying to do, and make thoughtful decisions about which changes to keep.
 -->
+
+---
+
+# Exercise: Resolve Merge Conflicts
+
+Resolving Conflicts in users.csv **Scenario**: Two team members modify `users.csv` simultaneously: **Nong** adds a new user: `user3,somyod,somyod@example.com` **Mai** updates a user: `user3,somchai,somchai@example.com`
+
+2. **Conflict occurs** when both try to push changes:
+   ```bash
+   git pull origin main
+   # CONFLICT (content): Merge conflict in users.csv
+   ```
+
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+3. **Resolve the conflict** by editing the file:
+
+```bash
+user1,anuchito,AnuchitO,AO,online,2025-08-25T10:30:00Z'
+user2,thai_dev,Thai Dev,TD,away,2025-08-25T09:45:00Z
+// <<<<<<< HEAD
+user3,somyod,SY,online,2025-08-25T10:30:00Z'
+=======
+user3,somchai,SC,away,2025-08-25T09:45:00Z
+// >>>>>>> user
+```
+
+</div>
+
+<div>
+
+4. **Final resolved version**:
+
+```bash
+user1,anuchito,AnuchitO,AO,online,2025-08-25T10:30:00Z'
+user2,thai_dev,Thai Dev,TD,away,2025-08-25T09:45:00Z
+user3,somyod,SY,online,2025-08-25T10:30:00Z'
+# Resolved by keeping changes from main branch
+```
+
+</div>
+</div>
 
 ---
 
