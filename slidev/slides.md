@@ -1720,6 +1720,168 @@ user3,somyod,SY,online,2025-08-25T10:30:00Z'
 
 ---
 
+# Handling Rebase Conflicts
+
+Resolving Rebase Conflicts in `users.csv` **Scenario**: You're rebasing your `user` branch with `main`: Your change: `user3,somchai,SC,away,2025-08-25T09:45:00Z` Main branch has: `user3,somyod,SY,online,2025-08-25T10:30:00Z`
+
+**Conflict occurs** during rebase:
+
+```bash
+git checkout user
+git rebase main
+# CONFLICT (content): Merge conflict in users.csv
+```
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+**Resolve the conflict** by editing the file:
+
+```bash
+user1,anuchito,AnuchitO,AO,online,2025-08-25T10:30:00Z'
+user2,thai_dev,Thai Dev,TD,away,2025-08-25T09:45:00Z
+// <<<<<<< HEAD
+user3,somyod,SY,online,2025-08-25T10:30:00Z'
+=======
+user3,somchai,SC,away,2025-08-25T09:45:00Z
+// >>>>>>> user
+```
+
+</div>
+
+<div>
+
+**After resolving**, continue the rebase:
+
+```bash
+git add users.csv
+git rebase --continue
+```
+
+**Final result** (if keeping your change):
+```bash
+user1,anuchito,AnuchitO,AO,online,2025-08-25T10:30:00Z'
+user2,thai_dev,Thai Dev,TD,away,2025-08-25T09:45:00Z
+user3,somchai,SC,away,2025-08-25T09:45:00Z
+```
+
+</div>
+</div>
+
+---
+
+# Git Rerere: Reuse Recorded Resolution
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+## What is Rerere?
+
+- **Reuse Recorded Resolution**
+- Automatically remembers how you resolved conflicts
+- Reuses the same resolution for similar conflicts
+
+## Enable Rerere
+
+```bash
+# Enable globally
+# Enable for all repositories
+git config --global rerere.enabled true
+
+# Or enable per repository
+git config rerere.enabled true
+```
+
+</div>
+
+<div>
+
+## How It Works
+
+1. Records conflict resolutions
+2. Saves them in `.git/rr-cache`
+3. Reapplies them automatically
+
+## Common Use Cases
+
+- Long-running feature branches
+- Rebase workflows
+- Maintaining multiple branches
+
+## View Recorded Resolutions
+
+```bash
+git rerere diff
+```
+
+</div>
+</div>
+
+---
+
+# Exercise: Use Rerere
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+**Enable rerere** (if not already enabled):
+
+```bash
+git config --global rerere.enabled true
+```
+
+**Create a conflict**:
+
+```bash
+# On main branch
+echo 'user4,bot,BOT,online,2025-08-25T11:00:00Z' >> users.csv
+git add users.csv
+git commit -m "Add bot"
+
+# On feature branch
+git checkout -b mod
+sed -i '' 's/bot/ai/g' users.csv
+git commit -am "Update bot to ai"
+
+# create new branch mod2
+git checkout -b mod2
+
+# Back to mod branch and rebase
+git checkout mod
+git rebase main
+```
+
+</div>
+
+<div>
+
+## The Exercise
+
+**Solve the conflict**
+
+```bash
+# On mod branch
+# Edit users.csv to resolve the conflict
+```
+
+**Go to mod2 branch and rebase**
+
+```bash
+# On mod2 branch
+# Edit users.csv the conflict will be resolved automatically
+```
+
+**Verify** rerere worked by checking:
+
+```bash
+git rerere diff
+```
+
+</div>
+</div>
+
+---
+
 ## Clone and Contribute Workflow
 
 ````md magic-move {lines: true}
