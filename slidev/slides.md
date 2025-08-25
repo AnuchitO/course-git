@@ -887,7 +887,7 @@ func filterGoodMessages(messages []string) (goodx []string) {
 
 #### F: We want to add logic to commit and good messages without committing debug logs
 
-<font size="1"><code>git commit -m "F: want to commit logic and good messages without debug logs"</code></font>
+<font size="1"><code>git commit -m "F: want to commit logic and good messages without DEBIRD logs"</code></font>
 
 ```go
 package server // thaichat/server/server.go
@@ -909,6 +909,52 @@ func filterBadMessages(messages []string) (bads []string) {
   </template>
 </v-switch>
 
+---
+
+# Discarding Changes: git restore
+
+Let's remove the `println` statements in `server.go` that are not committed.
+
+```bash
+git restore .
+```
+
+---
+
+# Replace the tip of the current branch
+
+Use `git commit --amend` to replace the tip of the current branch with a new commit.
+
+1. fix commit message "DEBIRD" (typo in early commit message)
+```bash
+git commit --amend
+```
+
+2. fix the variable name `emojisx` to `emojis` commit message
+```bash
+git add server.go
+git commit --amend
+```
+
+3. fix the variable name `goodsx` to `goods` commit message
+```bash
+git add server.go
+git commit --amend --no-edit
+```
+---
+
+# Stage and commit in one command
+
+Instead of using two commands (`git add` + `git commit -m`), you can use `-am` to stage and commit tracked files in one step. This only works for modified files, not new files.
+
+Edit `server.go` to change `goods` to `goodies`
+Then stage and commit in one command
+
+```bash
+git commit -am "G: refactor: rename goods to goodies for clarity"
+```
+
+Note: `-a` only stages changes to tracked files. For new files, you still need to `git add` them first.
 
 ---
 
