@@ -829,33 +829,85 @@ cat channels.csv
 git log --oneline
 ```
 ````
+
 ---
 
 # Exercise: Interactively Add Files to Git
 
-user `git add -p` to add server logic to Git.
+Use `git add -p` to add server logic to Git.
 
-````md magic-move {lines: true}
-```bash
+<v-switch>
+  <template #1>
 
-# Step 5: Make changes and commit again
-echo "This is a sample project for learning Git" >> README.md
-git add README.md
-git commit -m "Update README with description"
+#### D: Assume we have an existing file in our Git repository
 
-# Step 6: View your commit history
-git log --oneline
-git log --graph --oneline --all
+<font size="1"><code>git commit -m "D: assume we have it already"</code></font>
+
+```go
+package server // thaichat/server/server.go
+
+func filterBadMessages(messages []string) (bads []string) {
+
+	return bads
+}
+
 ```
-````
 
-<div class="mt-4 p-3 bg-green-100 dark:bg-green-900 rounded text-sm">
-✅ <strong>Success!</strong> Click through each step to see the complete Git workflow!
-</div>
+  </template>
 
-<!--
-This hands-on exercise demonstrates the basic Git workflow. Notice how each commit creates a snapshot of your project at that point in time.
--->
+  <template #2>
+
+#### E: Add emojis filter only
+
+<font size="1"><code>git commit -m "E: want to add emojis filter only"</code></font>
+
+```go {3-6}
+package server // thaichat/server/server.go
+
+func filterEmojis(messages []string) (emojis []string) {
+
+	return emojis
+}
+
+func filterBadMessages(messages []string) (bads []string) {
+
+	return bads
+}
+
+func filterGoodMessages(messages []string) (goods []string) {
+
+	return goods
+}
+
+```
+
+  </template>
+
+  <template #3>
+
+#### F: We want to add logic to commit and good messages without committing debug logs
+
+<font size="1"><code>git commit -m "F: want to commit logic and good messages without debug logs"</code></font>
+
+```go
+package server // thaichat/server/server.go
+
+func filterBadMessages(messages []string) (bads []string) {
+	println("Debug: Checking for new messages...") // don't commit this line
+
+	for _, message := range messages {
+		if message == "bad" {
+			println("Debug: Message is good:", message) //  don't commit this line
+			return append(bads, message)
+		}
+	}
+
+	return bads
+}
+
+```
+  </template>
+</v-switch>
 
 
 ---
