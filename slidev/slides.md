@@ -2336,6 +2336,108 @@ git push --delete origin v1.0.0 # Delete remote tag
 
 ---
 
+# Git Hooks
+
+Git hooks are scripts that run automatically before or after specific Git events.
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+### Common Local Hooks
+
+- `pre-commit`: Runs before commit
+- `prepare-commit-msg`: Before commit message editor
+- `commit-msg`: After commit message is created
+- `post-commit`: After commit is completed
+- `pre-push`: Before pushing to remote
+
+</div>
+<div>
+
+### Example: Pre-commit Hook
+
+```bash
+#!/bin/sh
+# .git/hooks/pre-commit
+
+echo "Running tests..."
+go test
+
+# If tests fail, prevent commit
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed. Commit aborted."
+  exit 1
+fi
+
+echo "✅ All tests passed!"
+```
+
+</div>
+</div>
+
+### dry-run
+
+```bash
+git commit --dry-run
+```
+
+---
+
+# Pre-commit Framework
+
+A framework for managing and maintaining multi-language pre-commit hooks.
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+### Setup
+
+```bash
+# Install pre-commit
+pip install pre-commit
+
+# Create config file
+cat > .pre-commit-config.yaml <<EOL
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+
+-   repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+    -   id: black
+
+# Install hooks
+pre-commit install
+```
+
+</div>
+<div>
+
+### Key Features
+
+- **Multi-language support** (Python, Go, JavaScript, etc.)
+- **Massive ecosystem** of existing hooks
+- **Runs in isolated environments**
+- **Fast** - Only runs on changed files
+- **Configurable** per repository
+
+### Common Hooks
+
+- Code formatting (Black, Prettier)
+- Linting (ESLint, Pylint)
+- Security scanning (Bandit, TruffleHog)
+- Testing (Run tests before commit)
+- Custom scripts
+
+</div>
+</div>
+
 ---
 
 # Git Tools and Integrations
