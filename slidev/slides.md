@@ -1336,6 +1336,62 @@ git reset --soft HEAD~2
 
 ---
 
+# Git Reflog: Your Safety Net
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+## What is Reflog?
+
+- Tracks all reference updates in your local repository
+- Acts as a safety net for recovering lost commits
+- Local only - not shared when pushing/pulling
+
+## Common Use Cases
+
+- Recover lost commits after a `reset`
+- Find and restore deleted branches
+- Debug when branches point to unexpected commits
+
+
+> ℹ️ Reflog entries expire after 90 days by default
+</div>
+
+<div>
+
+## Key Commands
+
+```bash
+git reflog # Show complete reference log
+git reflog show <branch> # for a specific reference
+
+# Recover a lost commit
+git checkout -b recovered-branch HEAD@{2}
+```
+
+## Example Workflow
+
+```bash
+# 1. Make some commits
+git commit -m "Add feature"
+
+# 2. Accidentally reset hard
+git reset --hard HEAD~1
+
+# 3. Find the lost commit
+git reflog
+
+# 4. Restore the lost commit
+git checkout -b recovered-feature HEAD@{1}
+# or just git checkout HEAD@{1}
+```
+
+</div>
+</div>
+
+---
+
 # Handling Merge Conflicts
 
 Conflicts occur when Git can't automatically merge changes. Let's see how to resolve them step by step.
