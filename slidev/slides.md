@@ -1240,6 +1240,52 @@ $ git log --oneline --graph --all
 
 ---
 
+# .gitignore: Ignoring Files
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+## Levels of .gitignore
+
+1. **Repository-level** (`.gitignore` in root)
+2. **Directory-level** (`.gitignore` in subdirectories)
+3. **Global** (`~/.config/git/ignore` or `~/.gitignore`)
+   - Applies to all repositories on your machine
+   - Configure with: `git config --global core.excludesfile ~/.gitignore_global`
+
+## Generate .gitignore file
+
+- <carbon-link /> [Gitignore.io](https://www.toptal.com/developers/gitignore)
+
+</div>
+
+<div>
+
+## Common Patterns
+
+- `*.log` - Ignore all .log files
+- `!important.log` - Except important.log
+- `logs/` - Ignore the logs directory
+- `*.tmp` - Ignore all .tmp files
+- `temp?` - Ignore temp1, temp2, etc.
+
+## Debugging
+
+```bash
+# Check ignored files -- is the file ignored?
+git check-ignore -v <file>
+
+# Show ignored files
+git status --ignored
+```
+
+</div>
+
+</div>
+
+---
+
 # Git Reset
 
 You're working on the `chatui` feature in ThaiChat and accidentally committed sensitive data to the `main` branch. Let's fix this while keeping your other changes.
@@ -1286,52 +1332,6 @@ git reset --soft HEAD~2
 - `--hard`: Discard all changes
 
 </div>
-</div>
-
----
-
-# .gitignore: Ignoring Files
-
-<div class="grid grid-cols-2 gap-6">
-
-<div>
-
-## Levels of .gitignore
-
-1. **Repository-level** (`.gitignore` in root)
-2. **Directory-level** (`.gitignore` in subdirectories)
-3. **Global** (`~/.config/git/ignore` or `~/.gitignore`)
-   - Applies to all repositories on your machine
-   - Configure with: `git config --global core.excludesfile ~/.gitignore_global`
-
-## Generate .gitignore file
-
-- <carbon-link /> [Gitignore.io](https://www.toptal.com/developers/gitignore)
-
-</div>
-
-<div>
-
-## Common Patterns
-
-- `*.log` - Ignore all .log files
-- `!important.log` - Except important.log
-- `logs/` - Ignore the logs directory
-- `*.tmp` - Ignore all .tmp files
-- `temp?` - Ignore temp1, temp2, etc.
-
-## Debugging
-
-```bash
-# Check ignored files -- is the file ignored?
-git check-ignore -v <file>
-
-# Show ignored files
-git status --ignored
-```
-
-</div>
-
 </div>
 
 ---
