@@ -565,7 +565,7 @@ git commit -m "A: my first commit"
   git config --global user.name "Your Name"
 ```
 
-##### 4. then we can comit
+##### 4. then we can commit
 ```bash
 git commit -m "A: my first commit"
 git log
