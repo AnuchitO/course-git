@@ -1392,6 +1392,70 @@ git checkout -b recovered-feature HEAD@{1}
 
 ---
 
+# Remotes: Collaborating with Others
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+### What is a Remote?
+
+- A reference to another Git repository
+- Can be any valid Git repository location:
+  - `https://github.com/user/repo.git`
+  - `git@github.com:user/repo.git`
+  - `file:///path/to/local/repo`
+  - `ssh://user@server/project.git`
+
+### Common Commands
+
+```bash
+git remote -v # List all remote
+
+git remote add <name> <url> # Add a new remote
+
+git remote remove <name> # Remove a remote
+
+git remote rename <old> <new> # Rename a remote
+```
+
+</div>
+
+<div>
+
+
+### Remote Operations
+
+```bash
+# Fetch changes from remote
+git fetch <remote>
+
+# Pull changes (fetch + merge)
+git pull <remote> <branch>
+
+# Push changes
+git push <remote> <branch>
+```
+
+### Example
+
+```bash
+git remote add local /path/to/local/repo
+
+# push to local remote
+git push local main
+
+# pull from local remote
+git pull local main
+
+git remote add origin https://gitlab.com/devbox.demo/thaichat.git
+```
+
+</div>
+</div>
+
+---
+
 # Handling Merge Conflicts
 
 Conflicts occur when Git can't automatically merge changes. Let's see how to resolve them step by step.
@@ -1480,66 +1544,6 @@ Conflicts are a normal part of collaborative development. The key is to stay cal
 -->
 
 ---
-
-# Remote Repositories
-
-Remote repositories enable collaboration and backup. Let's see how to work with them step by step.
-
-## Setting Up and Working with Remotes
-
-````md magic-move {lines: true}
-```bash
-# Start with a local repository
-git init my-awesome-project
-cd my-awesome-project
-echo "# My Awesome Project" > README.md
-git add README.md
-git commit -m "Initial commit"
-```
-
-```bash
-# Start with a local repository
-git init my-awesome-project
-cd my-awesome-project
-echo "# My Awesome Project" > README.md
-git add README.md
-git commit -m "Initial commit"
-
-# Add a remote repository (create one on GitHub first)
-git remote add origin https://github.com/AnuchitO/my-awesome-project.git
-```
-
-```bash
-# Add a remote repository (create one on GitHub first)
-git remote add origin https://github.com/AnuchitO/my-awesome-project.git
-
-# Check your remotes
-git remote -v
-# origin  https://github.com/AnuchitO/my-awesome-project.git (fetch)
-# origin  https://github.com/AnuchitO/my-awesome-project.git (push)
-```
-
-```bash
-# Check your remotes
-git remote -v
-
-# Push your local commits to remote
-git push -u origin main
-# -u sets upstream tracking for future pushes
-```
-
-```bash
-# Push your local commits to remote
-git push -u origin main
-
-# Now you can simply use:
-git push  # pushes to origin main automatically
-
-# Pull changes from remote
-git pull origin main
-# or just: git pull
-```
-````
 
 ## Clone and Contribute Workflow
 
