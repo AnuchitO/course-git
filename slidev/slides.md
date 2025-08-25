@@ -1456,7 +1456,7 @@ git remote add origin https://gitlab.com/devbox.demo/thaichat.git
 
 ---
 
-# GitLab Authentication with HTTPS
+# Git with GitLab
 
 <div class="grid grid-cols-2 gap-6">
 
@@ -1521,6 +1521,73 @@ git push
 
 ---
 
+# GPG Commit Signing
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+#### 1. Install GPG
+
+```bash
+# macOS (using Homebrew)
+brew install gnupg
+
+# Linux (Debian/Ubuntu)
+sudo apt-get install gnupg
+```
+
+#### 2. Generate GPG Key
+
+```bash
+# Generate a new key
+gpg --full-generate-key
+
+# Follow the prompts
+```
+
+#### 3. Configure Git to Use GPG
+
+```bash
+# Get your GPG key ID (after rsa.../)
+gpg --list-secret-keys --keyid-format=long
+# Configure Git
+git config user.signingkey YOUR_KEY_ID
+# Enable auto-signing
+git config commit.gpgsign true
+```
+
+</div>
+
+<div>
+
+#### 4. Use noreply email for commits
+
+```bash
+# use noreply email
+git config user.email "29738004-demo@users.noreply.gitlab.com"
+```
+
+#### 5. Configure GPG TTY
+
+```bash
+# ~/.zshrc or ~/.bashrc # GPG can be used in the terminal
+export GPG_TTY=$(tty)
+```
+
+#### 6. Add GPG public key to GitLab
+
+```bash
+gpg --export --armor YOUR_KEY_ID
+# copy the output
+# go to GitLab → User Settings → GPG Keys
+```
+
+
+</div>
+</div>
+
+---
 # Handling Merge Conflicts
 
 Conflicts occur when Git can't automatically merge changes. Let's see how to resolve them step by step.
