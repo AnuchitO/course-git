@@ -1932,6 +1932,65 @@ squash c3d4e5f Update styles
 
 ---
 
+# Git Stash: Save Your Work in Progress
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+### Basic Usage
+
+```bash
+# Stash changes
+git stash
+
+# List stashes
+git stash list
+
+# Apply stash
+git stash pop
+
+# Drop a stash
+git stash drop stash@{n}
+```
+
+</div>
+
+<div>
+
+### Stash Options
+
+```bash
+# Stash including untracked files
+git stash -u
+
+# Stash with message
+git stash save "Work in progress"
+
+# Stash but keep staged changes
+git stash --keep-index
+
+# Apply and drop from stash list
+git stash pop
+```
+
+</div>
+</div>
+
+
+### Common Workflow
+
+Working on a feature or bug fix and need to switch branches:
+
+```bash
+git stash
+git checkout other-branch
+# Do some work
+git checkout feature-branch
+git stash pop
+```
+
+---
+
 ## Clone and Contribute Workflow
 
 ````md magic-move {lines: true}
