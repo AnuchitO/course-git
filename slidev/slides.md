@@ -2220,7 +2220,6 @@ git bisect good HEAD~10
 # Git checks out middle commit
 # Test your code (run tests, check functionality)
 npm test  # or whatever your test command is
-```
 
 ```bash
 # Test your code (run tests, check functionality)
@@ -2252,78 +2251,90 @@ git bisect reset
 
 ---
 
-## Git Blame - Find Who Changed What
+# Exercise: Find the Bug with Git Bisect
 
-````md magic-move {lines: true}
+## Scenario
+You're working on a Go project and a test just started failing. Your task is to find which commit introduced the bug using `git bisect`.
+
+## Tips
+- Use `git bisect visualize` to see the current state
+- Run `git bisect log` to see your bisect history
+- If you make a mistake, use `git bisect reset` to start over
+
+---
+
+# Bisect script
+
 ```bash
-# You found a problematic line of code
-# Let's see who wrote it and when
-git blame problematic-file.js
+# Create a script to run tests
+#!/bin/sh
+go test
+if [ $? -ne 0 ]; then
+  echo "Tests failed, commit aborted"
+  exit 1
+else
+  exit 0
+fi
 ```
 
 ```bash
-# You found a problematic line of code
-# Let's see who wrote it and when
-git blame problematic-file.js
-
-# Output shows: commit, author, date, line number, code
-# abc123 (AnuchitO 2024-01-15 10:30:00 +0000  15) const buggyFunction = () => {
-# def456 (Alice    2024-01-10 14:20:00 +0000  16)   return undefined;
-# ghi789 (Bob      2024-01-12 09:15:00 +0000  17) }
+# Run the script with bisect
+git bisect run scripts/bisect_test.sh
 ```
+
+---
+
+# Git Tags & Semantic Versioning
+
+Git tags are references (or pointers) to specific points in a project's history, typically used to mark releases.
+While annotated tags are effectively immutable, lightweight tags can technically be moved, but it's discouraged.
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+### Basic Tag Commands
 
 ```bash
-# Focus on specific lines that are problematic
-git blame -L 15,20 problematic-file.js
+# List all tags
+git tag
+# Create lightweight tag
+git tag v1.0.0
+# Create annotated tag
+git tag -a v1.0.0 -m "Release v1.0.0"
+# Show tag details
+git show v1.0.0
+# Push tags to remote
+git push origin v1.0.0
+# Push all tags
+git push origin --tags
 
-# Ignore whitespace changes to see real changes
-git blame -w problematic-file.js
+git checkout v1.0.0 # Checkout specific tag
+git tag -d v1.0.0 # Delete local tag
+git push --delete origin v1.0.0 # Delete remote tag
 ```
-
-```bash
-# Get more context about the commit
-git show abc123
-
-# See the full commit that introduced the problematic line
-# This shows the complete change, commit message, and context
-```
-````
-
-## Git Log Detective Work
-
-````md magic-move {lines: true}
-```bash
-# Search for commits related to a specific bug
-git log --grep="authentication"
-git log --grep="login.*bug"  # regex search
-```
-
-```bash
-# Search for commits that added/removed specific code
-git log -S "authenticate"  # find commits that changed this text
-git log -G "function.*login"  # regex search in code changes
-```
-
-```bash
-# See all changes to a specific file
-git log -p auth.js  # shows full diff for each commit
-git log --follow auth.js  # follows file renames
-```
-
-```bash
-# Find when specific lines were added/changed
-git log -L 15,20:auth.js  # track lines 15-20 in auth.js
-# This shows the history of those specific lines
-```
-````
-
-<div class="mt-4 p-4 bg-yellow-100 dark:bg-yellow-900 rounded">
-💡 <strong>Pro Tip:</strong> Combine these tools! Use <code>git bisect</code> to find the commit, then <code>git blame</code> and <code>git show</code> to understand the change.
 </div>
 
-<!--
-These debugging tools can save hours of manual searching. Git bisect is particularly powerful for finding regressions in large codebases.
--->
+<div>
+
+### Semantic Versioning (SemVer)
+
+`MAJOR.MINOR.PATCH` (e.g., `v2.1.3`)
+
+- **MAJOR**: Incompatible API changes
+- **MINOR**: Backward-compatible features
+- **PATCH**: Backward-compatible bug fixes
+
+### Pre-release & Build Metadata
+- `1.0.0-alpha.1` - Alpha release
+- `1.0.0-beta.2` - Beta release
+- `1.0.0-rc.1` - Release candidate
+
+</div>
+</div>
+
+> Best Practices: Use annotated tags for releases, Follow SemVer strictly, Sign important tags, Document changes in release notes
+
+---
 
 ---
 
@@ -2350,6 +2361,7 @@ Enhance your Git workflow with these tools and integrations.
 </div>
 
 <div>
+
 
 ## Command Line Tools
 ```bash
@@ -2401,131 +2413,6 @@ The right tools can significantly improve your Git experience. Start with basic 
 
 ---
 
-# Troubleshooting Common Issues
-
-Every developer encounters Git problems. Here are practical solutions to the most common ones.
-
-## "I committed to the wrong branch!"
-
-````md magic-move {lines: true}
-```bash
-# Oops! You just committed to main instead of a feature branch
-git log --oneline  # see your recent commit
-```
-
-```bash
-# Oops! You just committed to main instead of a feature branch
-git log --oneline  # see your recent commit
-
-# Step 1: Create a new branch pointing to current commit
-git branch feature/user-profile  # new branch with your commit
-```
-
-```bash
-# Step 1: Create a new branch pointing to current commit
-git branch feature/user-profile  # new branch with your commit
-
-# Step 2: Reset main branch to previous commit
-git reset --hard HEAD~1  # remove commit from main
-```
-
-```bash
-# Step 1: Create a new branch pointing to current commit
-git branch feature/user-profile  # new branch with your commit
-
-# Step 2: Reset main branch to previous commit
-git reset --hard HEAD~1  # remove commit from main
-
-# Step 3: Switch to your feature branch
-git checkout feature/user-profile
-git log --oneline  # your commit is safely here!
-```
-````
-
-## "I need to undo my last commit"
-
-````md magic-move {lines: true}
-```bash
-# Different scenarios require different approaches
-git log --oneline -3  # see recent commits
-```
-
-```bash
-# Different scenarios require different approaches
-git log --oneline -3  # see recent commits
-
-# Scenario 1: Keep changes, just undo the commit
-git reset --soft HEAD~1
-git status  # changes are staged and ready to re-commit
-```
-
-```bash
-# Scenario 1: Keep changes, just undo the commit
-git reset --soft HEAD~1
-git status  # changes are staged and ready to re-commit
-
-# Scenario 2: Keep changes but unstage them
-git reset HEAD~1
-git status  # changes are in working directory
-```
-
-```bash
-# Scenario 2: Keep changes but unstage them
-git reset HEAD~1
-git status  # changes are in working directory
-
-# Scenario 3: ⚠️ Completely remove commit and changes
-git reset --hard HEAD~1
-# Everything is gone - use with extreme caution!
-```
-````
-
-## "I accidentally deleted a file"
-
-````md magic-move {lines: true}
-```bash
-# Oh no! You deleted an important file
-ls  # file is missing
-```
-
-```bash
-# Oh no! You deleted an important file
-ls  # file is missing
-
-# Check if it's just unstaged
-git status  # shows deleted file
-```
-
-```bash
-# Check if it's just unstaged
-git status  # shows deleted file
-
-# Restore from the last commit
-git checkout HEAD -- important-file.js
-ls  # file is back!
-```
-
-```bash
-# Restore from the last commit
-git checkout HEAD -- important-file.js
-ls  # file is back!
-
-# Or restore from a specific commit
-git checkout abc123 -- important-file.js
-git log --oneline -- important-file.js  # see file history
-```
-````
-
-<div class="mt-4 p-4 bg-blue-100 dark:bg-blue-900 rounded">
-💡 <strong>Remember:</strong> Git'sreflog is your safety net - it tracks all ref changes for 30 days by default!
-</div>
-
-<!--
-Don't panic when things go wrong! Git is very forgiving, and most "disasters" can be recovered from. The reflog is your safety net for most situations.
--->
-
----
-
 # Git Performance and Optimization
 
 Keep your Git repositories fast and efficient with these optimization techniques.
@@ -2538,16 +2425,12 @@ Keep your Git repositories fast and efficient with these optimization techniques
 ```bash
 # Clean up unnecessary files
 git gc --aggressive
-
 # Verify repository integrity
 git fsck
-
 # Show repository size
 git count-objects -vH
-
 # Prune remote tracking branches
 git remote prune origin
-
 # Clean untracked files
 git clean -fd
 ```
@@ -2585,435 +2468,9 @@ git config --global core.fsmonitor true
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 ```
 
-## Monitoring Repository Health
-- Track repository size growth
-- Monitor clone/fetch times
-- Use `git gc` regularly
-- Consider repository splitting for monorepos
-- Implement LFS for binary assets
-
 </div>
 
 </div>
-
-<!--
-Performance optimization becomes important as repositories grow. Regular maintenance and proper configuration can keep Git operations fast even in large codebases.
--->
-
----
-
-# Advanced Git Techniques
-
-Master these advanced techniques to become a Git power user.
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Interactive Rebase
-Clean up commit history before sharing:
-
-```bash
-# Rebase last 3 commits
-git rebase -i HEAD~3
-
-# Options in editor:
-# pick = use commit
-# reword = change message
-# edit = modify commit
-# squash = combine with previous
-# drop = remove commit
-```
-
-## Cherry Picking
-Apply specific commits to another branch:
-
-```bash
-# Apply single commit
-git cherry-pick <commit-hash>
-
-# Apply range of commits
-git cherry-pick A..B
-
-# Cherry-pick without committing
-git cherry-pick -n <commit-hash>
-```
-
-</div>
-
-<div>
-
-## Submodules
-Include other repositories as subdirectories:
-
-```bash
-# Add submodule
-git submodule add <url> <path>
-
-# Clone repo with submodules
-git clone --recursive <url>
-
-# Update submodules
-git submodule update --remote
-
-# Remove submodule
-git submodule deinit <path>
-git rm <path>
-```
-
-## Worktrees
-Work on multiple branches simultaneously:
-
-```bash
-# Create new worktree
-git worktree add ../feature-branch feature
-
-# List worktrees
-git worktree list
-
-# Remove worktree
-git worktree remove ../feature-branch
-```
-
-</div>
-
-</div>
-
-<!--
-These advanced techniques are powerful but use them judiciously. Interactive rebase is great for cleaning history, while submodules help manage dependencies.
--->
-
----
-
-# Git in Team Environments
-
-Effective Git usage in teams requires coordination and shared practices.
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Code Review Process
-1. **Create feature branch** from main
-2. **Implement changes** with good commits
-3. **Push branch** to remote
-4. **Open pull request** with description
-5. **Address review feedback**
-6. **Merge after approval**
-
-## Pull Request Best Practices
-✅ **Clear title and description**
-✅ **Link to relevant issues**
-✅ **Keep changes focused**
-✅ **Include tests**
-✅ **Respond to feedback promptly**
-
-## Branch Protection Rules
-- Require pull request reviews
-- Require status checks to pass
-- Restrict who can push to main
-- Require up-to-date branches
-
-</div>
-
-<div>
-
-## Team Conventions
-```bash
-# Consistent branch naming
-feature/JIRA-123-user-login
-bugfix/fix-memory-leak
-hotfix/security-patch-v1.2.1
-
-# Commit message format
-type(scope): description
-
-feat(auth): add OAuth2 integration
-fix(api): handle null user responses
-docs(readme): update installation steps
-```
-
-## Conflict Resolution Strategy
-1. **Communicate** about overlapping work
-2. **Rebase frequently** to stay current
-3. **Resolve conflicts** thoughtfully
-4. **Test thoroughly** after resolution
-5. **Document** complex merge decisions
-
-## Release Management
-- Use semantic versioning (1.2.3)
-- Tag releases consistently
-- Maintain changelog
-- Automate release notes
-
-</div>
-
-</div>
-
-<!--
-Team success with Git depends on clear processes and good communication. Establish conventions early and stick to them consistently.
--->
-
----
-
-# Git Security and Compliance
-
-Protect your code and maintain compliance with these security practices.
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Signed Commits
-Verify commit authenticity:
-
-```bash
-# Generate GPG key
-gpg --gen-key
-
-# Configure Git to use GPG
-git config --global user.signingkey <key-id>
-git config --global commit.gpgsign true
-
-# Sign individual commit
-git commit -S -m "Signed commit"
-
-# Verify signatures
-git log --show-signature
-```
-
-## Access Control
-- Use SSH keys for authentication
-- Rotate keys regularly
-- Implement branch protection
-- Audit repository access
-- Use organization-level policies
-
-</div>
-
-<div>
-
-## Secrets Management
-```bash
-# Check for secrets before commit
-git diff --cached | grep -E "(password|secret|key)"
-
-# Remove secrets from history
-git filter-branch --force --index-filter \
-'git rm --cached --ignore-unmatch config/secrets.yml'
-
-# Use git-secrets tool
-git secrets --register-aws
-git secrets --install
-git secrets --scan
-```
-
-## Compliance Considerations
-- Maintain audit trails
-- Document approval processes
-- Implement automated scanning
-- Regular security reviews
-- Backup strategies
-- Data retention policies
-
-</div>
-
-</div>
-
-<!--
-Security should be built into your Git workflow from the beginning. Prevention is much easier than remediation after secrets are exposed.
--->
-
----
-layout: center
-class: text-center
----
-
-# Practice Exercise
-
-Let's put it all together with a comprehensive hands-on exercise.
-
-<div class="mt-8 p-6 bg-blue-100 dark:bg-blue-900 rounded-lg">
-
-## Scenario: Team Feature Development
-
-You're working on a team project to add a user authentication system. Practice the complete workflow:
-
-1. **Fork** the practice repository
-2. **Clone** your fork locally
-3. **Create** a feature branch
-4. **Implement** the feature with multiple commits
-5. **Handle** a merge conflict
-6. **Create** a pull request
-7. **Review** and merge
-
-</div>
-
-<div class="mt-6">
-<a href="https://github.com/AnuchitO/git-practice-repo" target="_blank" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
-  Start Practice Exercise →
-</a>
-</div>
-
-<!--
-This exercise simulates real-world team development. Take your time and don't hesitate to refer back to previous slides for command reference.
--->
-
----
-
-# Git Cheat Sheet
-
-Interactive quick reference for essential Git commands by category.
-
-````md magic-move {lines: true}
-```bash
-# SETUP & CONFIGURATION
-git config --global user.name "AnuchitO"
-git config --global user.email "anuchito@example.com"
-git init
-git clone <url>
-```
-
-```bash
-# BASIC WORKFLOW - Daily Commands
-git status                    # Check repository status
-git add <file>               # Stage specific file
-git add .                    # Stage all changes
-git commit -m "message"      # Commit with message
-git push origin <branch>     # Push to remote
-git pull origin <branch>     # Pull from remote
-```
-
-```bash
-# BRANCHING - Parallel Development
-git branch                   # List branches
-git branch <name>           # Create branch
-git checkout <branch>       # Switch branch
-git checkout -b <branch>    # Create and switch
-git merge <branch>          # Merge branch
-git branch -d <branch>      # Delete branch
-```
-
-```bash
-# HISTORY & INSPECTION
-git log                     # Show commit history
-git log --oneline          # Compact history
-git log --graph            # Visual branch history
-git show <commit>          # Show commit details
-git diff                   # Show unstaged changes
-git diff --staged          # Show staged changes
-```
-
-```bash
-# UNDOING CHANGES - Fix Mistakes
-git checkout -- <file>     # Discard file changes
-git reset HEAD <file>      # Unstage file
-git reset --soft HEAD~1    # Undo commit, keep changes
-git reset --hard HEAD~1    # ⚠️ Undo commit, lose changes
-git revert <commit>        # Safe undo with new commit
-```
-
-```bash
-# STASHING - Temporary Storage
-git stash                  # Save current changes
-git stash pop             # Apply and remove latest stash
-git stash list            # Show all stashes
-git stash apply           # Apply stash without removing
-git stash drop            # Delete a stash
-```
-
-```bash
-# REMOTE REPOSITORIES - Collaboration
-git remote -v             # Show remotes
-git remote add origin <url> # Add remote
-git fetch origin          # Download changes
-git push origin <branch>  # Upload branch
-git pull origin <branch>  # Download and merge
-```
-
-```bash
-# ADVANCED OPERATIONS - Power User
-git rebase <branch>       # Reapply commits on branch
-git rebase -i HEAD~3      # Interactive rebase
-git cherry-pick <commit>  # Apply specific commit
-git bisect start          # Find bug-introducing commit
-git reflog               # Show reference log
-```
-
-```bash
-# USEFUL ALIASES - Save Time
-git config --global alias.st status
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.cm commit
-git config --global alias.lg "log --oneline --graph"
-```
-````
-
-<div class="mt-4 p-4 bg-blue-100 dark:bg-blue-900 rounded">
-💡 <strong>Bookmark This!</strong> Click through each category to see the commands you need for different Git tasks.
-</div>
-
-<!--
-Keep this cheat sheet handy as you practice. These commands cover 90% of daily Git usage. Bookmark this slide for quick reference!
--->
-
----
-
-# Resources and Next Steps
-
-Continue your Git journey with these resources and recommendations.
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Essential Resources
-📚 **Books**
-- "Pro Git" by Scott Chacon (free online)
-- "Git Pocket Guide" by Richard Silverman
-
-🌐 **Online Learning**
-- [Git Official Tutorial](https://git-scm.com/docs/gittutorial)
-- [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials)
-- [GitHub Learning Lab](https://lab.github.com/)
-- [Learn Git Branching](https://learngitbranching.js.org/)
-
-🎮 **Interactive Practice**
-- [Git Exercises](https://gitexercises.fracz.com/)
-- [Oh Shit, Git!?!](https://ohshitgit.com/)
-
-</div>
-
-<div>
-
-## Next Steps
-1. **Practice daily** - use Git for all projects
-2. **Explore advanced features** - hooks, submodules, worktrees
-3. **Learn platform-specific features** - GitHub Actions, GitLab CI
-4. **Contribute to open source** - practice collaboration
-5. **Teach others** - solidify your knowledge
-
-## Community
-- Stack Overflow Git tag
-- Reddit r/git
-- Git mailing list
-- Local Git meetups
-- Conference talks and workshops
-
-## Tools to Explore
-- Git hooks for automation
-- CI/CD integration
-- Code quality tools
-- Advanced Git GUIs
-
-</div>
-
-</div>
-
-<!--
-Learning Git is a journey, not a destination. The more you use it, the more comfortable you'll become. Don't be afraid to experiment and make mistakes - that's how you learn!
--->
 
 ---
 layout: center
