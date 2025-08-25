@@ -1237,6 +1237,57 @@ $ git log --oneline --graph --all
 </div>
 
 </div>
+
+---
+
+# Git Reset
+
+You're working on the `chatui` feature in ThaiChat and accidentally committed sensitive data to the `main` branch. Let's fix this while keeping your other changes.
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+### Demo: Remove Sensitive Data
+
+```mermaid
+gitGraph
+    commit id: "A"
+    commit id: "B"
+    branch chatui
+    commit id: "Add chat UI components"
+    commit id: "Add message input"
+    commit id: "Add API credentials" type: HIGHLIGHT
+    commit id: "Fix message rendering"
+```
+
+🌐 [Learn Git Branching](https://learngitbranching.js.org/?NODEMO)
+
+</div>
+
+<div>
+
+### Undoing Changes
+
+```bash
+git reset --soft <commit>
+
+# reset to the commit before the current commit one commit
+git reset --soft HEAD~1
+
+# reset to the commit before the current commit two commits
+git reset --soft HEAD~2
+```
+
+### Reset Options
+
+- `--mixed`: (default) the changed files are preserved but not marked for commit
+- `--soft`: Keep changes in staging area
+- `--hard`: Discard all changes
+
+</div>
+</div>
+
 ---
 
 ## Merge vs Rebase
