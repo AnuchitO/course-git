@@ -2253,10 +2253,23 @@ git bisect reset
 
 # Exercise: Find the Bug with Git Bisect
 
-## Scenario
+### Scenario
 You're working on a Go project and a test just started failing. Your task is to find which commit introduced the bug using `git bisect`.
 
-## Tips
+### Clone the repository
+
+```bash
+git clone https://github.com/AnuchitO/demo-bisect.git
+cd demo-bisect
+
+go test
+
+git bisect start
+git bisect bad HEAD
+git bisect good <good-commit>
+```
+
+### Tips
 - Use `git bisect visualize` to see the current state
 - Run `git bisect log` to see your bisect history
 - If you make a mistake, use `git bisect reset` to start over
@@ -2278,6 +2291,9 @@ fi
 ```
 
 ```bash
+git bisect start
+git bisect bad HEAD
+git bisect good <good-commit>
 # Run the script with bisect
 git bisect run scripts/bisect_test.sh
 ```
