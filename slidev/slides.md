@@ -1456,6 +1456,71 @@ git remote add origin https://gitlab.com/devbox.demo/thaichat.git
 
 ---
 
+# GitLab Authentication with HTTPS
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+### Personal Access Token
+
+[Go to GitLab → User Settings → Access Tokens](https://gitlab.com/-/profile/personal_access_tokens)
+
+
+### Config Credentials for HTTPS
+
+```bash
+# Store credentials in plaintext (not recommended)
+git config --global credential.helper store
+
+# macOS
+git config --global credential.helper osxkeychain
+```
+
+### Config Credentials for SSH
+
+```bash
+# generate ssh key
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# add ssh key to ssh-agent
+ssh-add ~/.ssh/id_ed25519
+
+# add ssh key to gitlab
+# go to GitLab → User Settings → SSH Keys
+# copy the content of ~/.ssh/id_ed25519.pub
+# paste it into the SSH Keys section
+```
+
+</div>
+
+<div>
+
+### Update Remote URL (if needed)
+
+```bash
+git remote set-url origin https://username:YOUR_ACCESS_TOKEN@gitlab.com/username/repository.git
+# or
+git remote add origin git@gitlab.com:username/repository.git
+# or
+git remote add origin https://gitlab.com/username/repository.git
+```
+
+### Verify
+
+```bash
+# This should work without password prompt
+git pull
+git push
+```
+
+> ⚠️ **Security Note**: Never commit your token or store it in plaintext in scripts. Use environment variables or Git's credential helper.
+
+</div>
+</div>
+
+---
+
 # Handling Merge Conflicts
 
 Conflicts occur when Git can't automatically merge changes. Let's see how to resolve them step by step.
