@@ -1290,18 +1290,49 @@ git reset --soft HEAD~2
 
 ---
 
-## Merge vs Rebase
+# .gitignore: Ignoring Files
 
-| Merge                    | Rebase            |
-|--------------------------|-------------------|
-| Preserves history        | Linear history    |
-| Shows branch context     | Cleaner timeline  |
-| Safe for shared branches | Rewrites history  |
-| `git merge feature`      | `git rebase main` |
+<div class="grid grid-cols-2 gap-6">
 
-<!--
-Choose merge for preserving context and rebase for clean history. Never rebase shared branches - it can cause problems for other developers.
--->
+<div>
+
+## Levels of .gitignore
+
+1. **Repository-level** (`.gitignore` in root)
+2. **Directory-level** (`.gitignore` in subdirectories)
+3. **Global** (`~/.config/git/ignore` or `~/.gitignore`)
+   - Applies to all repositories on your machine
+   - Configure with: `git config --global core.excludesfile ~/.gitignore_global`
+
+## Generate .gitignore file
+
+- <carbon-link /> [Gitignore.io](https://www.toptal.com/developers/gitignore)
+
+</div>
+
+<div>
+
+## Common Patterns
+
+- `*.log` - Ignore all .log files
+- `!important.log` - Except important.log
+- `logs/` - Ignore the logs directory
+- `*.tmp` - Ignore all .tmp files
+- `temp?` - Ignore temp1, temp2, etc.
+
+## Debugging
+
+```bash
+# Check ignored files -- is the file ignored?
+git check-ignore -v <file>
+
+# Show ignored files
+git status --ignored
+```
+
+</div>
+
+</div>
 
 ---
 
