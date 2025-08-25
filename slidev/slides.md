@@ -502,7 +502,7 @@ These commands form the core Git workflow. Practice them until they become muscl
 ---
 
 
-#### 📝 Assignment: Create Your First Repository
+#### 📝 Excercise: Create Your First Repository
 
 **Task 1:** Create a new project folder and initialize Git
 
@@ -755,7 +755,7 @@ Git's object model is elegant in its simplicity. Every piece of data is stored a
 
 ---
 
-# Hands-on: Create Chat Channels Configuration
+# Excercise: Create Chat Channels Configuration
 
 Let's create a channels configuration for ThaiChat and track it with Git.
 
