@@ -958,164 +958,115 @@ Note: `-a` only stages changes to tracked files. For new files, you still need t
 
 ---
 
-# Understanding Commits
+# Branches
 
-A commit is a snapshot of your project at a specific point in time.
+Branches allow you to work on different features simultaneously without affecting the main codebase.
+They are like **lightweight, mutable pointers to a commit**. You can move them around, change where they point to commit and even delete them.
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Commit Anatomy
+#### List all branches
 ```bash
-commit a1b2c3d4e5f6...
-Author: John Doe <john@example.com>
-Date: Mon Jan 15 10:30:00 2024 +0000
-
-    Fix user authentication bug
-
-    - Validate token expiration
-    - Add error handling for invalid tokens
-    - Update tests for auth module
+git branch         # List local branches
+git branch -a      # List all branches (local + remote)
 ```
 
-</div>
+#### Create branches (3 ways)
 
-<div>
-
-## Commit Best Practices
-
-### Good Messages ✅
-- `Fix login validation for empty passwords`
-- `Add user profile API endpoint`
-- `Refactor database connection logic`
-
-### Bad Messages ❌
-- `fix bug`
-- `update stuff`
-- `asdf`
-
-</div>
-
-</div>
-
-## Commit Message Format
-
-```
-<type>: <subject>
-
-<body>
-
-<footer>
+```bash
+git branch new_branch  # 1. only creates, doesn't switch new_branch
+git switch -c new_branch  # 2. Create and switch to new_branch (modern way)
+git checkout -b new_branch  # 3. Create and switch to new_branch (legacy way) but still widely used
 ```
 
-**Types:** feat, fix, docs, style, refactor, test, chore
-
-<!--
-Good commit messages are like good documentation - they help future you and your teammates understand what changed and why. Treat each commit as a logical unit of change.
--->
+Creating a new branch starts from the current commit.
 
 ---
 
-# Branching Fundamentals
+# Branch: Adding User Authentication
 
-Branches allow you to work on different features simultaneously without affecting the main codebase.
+Create a new branch `auth` and add `users.csv` to it.
 
-```mermaid
-gitgraph
-    commit id: "Initial"
-    commit id: "Add login"
-    branch feature/signup
-    checkout feature/signup
-    commit id: "Add signup form"
-    commit id: "Add validation"
+```mermaid {scale: 1.3}
+gitGraph
+    commit id: "A: my first commit"
+    commit id: "B: most popular chat"
+    commit id: "C: feat: add initial chat ..."
+    commit id: "..."
+    commit id: "G: refactor: rename goods ..."
+    branch auth
+    checkout auth
+    commit id: "H: add users.csv header"
+    commit id: "I: add anuchito user"
+    commit id: "J: add thai_dev user"
+```
+
+🌐 [Learn Git Branching](https://learngitbranching.js.org/?NODEMO)
+
+---
+
+# Branch: Adding User Authentication
+
+```bash
+# Create and switch to new branch
+git switch -c auth
+
+# 1. Create users.csv header
+echo 'user_id,username,display_name,avatar,status,last_seen' > users.csv
+git add users.csv
+git commit -m "H: add users.csv header"
+
+# 2. Add anuchito user
+echo 'user1,anuchito,Anuchit O,👨‍💻,online,2025-08-25T10:30:00Z' >> users.csv
+git add users.csv
+git commit -m "I: add anuchito user"
+
+# 3. Add thai_dev user
+echo 'user2,thai_dev,Thai Dev,🤖,away,2025-08-25T09:45:00Z' >> users.csv
+git add users.csv
+git commit -m "J: add thai_dev user"
+```
+
+---
+
+# Branch: Switch to Main to Add Channels
+
+Now let's switch back to `main` branch to add more channels.
+
+<v-switch>
+  <template #1>
+
+```mermaid {scale: 1.3}
+gitGraph
+    commit id: "A: my first commit"
+    commit id: "..."
+    commit id: "G: refactor: rename goods ..."
+    branch auth
+    checkout auth
+    commit id: "H: add users.csv header"
+    commit id: "I: add anuchito user"
+    commit id: "J: add thai_dev user"
     checkout main
-    commit id: "Fix bug"
-    merge feature/signup
-    commit id: "Release v1.0"
+    commit id: "K: add more bot channel"
+    commit id: "L: add more admin channel"
 ```
 
-## Practical Branching Workflow
+  </template>
 
-````md magic-move {lines: true}
-```bash
-# Start: Check current branch and status
-git branch
-git status
-```
+  <template #2>
 
 ```bash
-# Start: Check current branch and status
-git branch
-git status
-
-# Create a new feature branch
-git branch feature/user-authentication
-git branch  # see all branches
-```
-
-```bash
-# Start: Check current branch and status
-git branch
-git status
-
-# Create a new feature branch
-git branch feature/user-authentication
-git branch  # see all branches
-
-# Switch to the new branch
-git checkout feature/user-authentication
-# or use the newer command
-git switch feature/user-authentication
-```
-
-```bash
-# Start: Check current branch and status
-git branch
-git status
-
-# Create a new feature branch
-git branch feature/user-authentication
-git branch  # see all branches
-
-# Switch to the new branch
-git checkout feature/user-authentication
-# or use the newer command
-git switch feature/user-authentication
-
-# Shortcut: Create and switch in one command
-git checkout -b feature/user-profile
-```
-
-```bash
-# Start: Check current branch and status
-git branch
-git status
-
-# Create a new feature branch
-git branch feature/user-authentication
-git branch  # see all branches
-
-# Switch to the new branch
-git checkout feature/user-authentication
-
-# Shortcut: Create and switch in one command
-git checkout -b feature/user-profile
-
-# Work on your feature, then merge back
 git checkout main
-git merge feature/user-authentication
-git branch -d feature/user-authentication  # delete merged branch
+# Add bot channel
+echo '4,bot,Bot chat,true,2025-08-25T10:15:00+07:00' >> channels.csv
+git add channels.csv
+git commit -m "K: add bot channel"
+
+# Add admin channel
+echo '5,admin,Admin chat,true,2025-08-25T10:20:00+07:00' >> channels.csv
+git add channels.csv
+git commit -m "L: add admin channel"
 ```
-````
-
-<div class="mt-4 p-3 bg-blue-100 dark:bg-blue-900 rounded text-sm">
-💡 <strong>Branch Naming:</strong> feature/user-auth, bugfix/login-error, hotfix/security-patch
-</div>
-
-<!--
-Think of branches as parallel universes where you can experiment without affecting the main timeline. This is one of Git's most powerful features.
--->
+  </template>
+</v-switch>
 
 ---
 
@@ -1128,51 +1079,100 @@ There are different ways to combine branches, each with its own use cases.
 <div>
 
 ## Fast-Forward Merge
-When target branch hasn't changed:
+
+Fast-forward merge occurs when **the target branch has no new commits**. Git simply moves the branch pointer to the tip of the merged branch.
 
 ```bash
-git checkout main
-git merge feature/quick-fix
+git switch main
+git merge auth
 ```
 
 ```mermaid
-gitgraph
+gitGraph
     commit id: "A"
     commit id: "B"
-    branch feature
     commit id: "C"
-    commit id: "D"
-    checkout main
-    merge feature
+    commit id: "D" type: HIGHLIGHT
+    commit id: "E" type: HIGHLIGHT
 ```
+
+This is the behavior you want when merging branches that contain the same commits. This is the default behavior of `git merge`, and it is the reason why `git merge` is so fast.
 
 </div>
 
 <div>
 
 ## Three-Way Merge
-When both branches have new commits:
+
+Three-way merge combines changes from both branches using their common ancestor. Git creates a new commit that combines the changes.
 
 ```bash
-git checkout main
-git merge feature/complex-feature
+git switch main
+git merge --no-ff auth
 ```
 
 ```mermaid
-gitgraph
+gitGraph
     commit id: "A"
     commit id: "B"
-    branch feature
-    commit id: "C"
-    checkout main
+    branch auth
     commit id: "D"
-    merge feature
-    commit id: "Merge"
+    commit id: "E"
+    switch main
+    commit id: "C"
+    merge auth id: "Merge"
 ```
 
 </div>
 
 </div>
+
+---
+
+# Demo: 🌐 [Learn Git Branching](https://learngitbranching.js.org/?NODEMO)
+
+### Fast-Forward Merge
+
+when the target branch has no new commits, git simply moves the branch pointer to the tip of the merged branch.
+
+we will merge `auth` branch into `main` (target) branch.
+
+```bash
+git switch main
+git merge auth
+```
+
+
+### Three-Way Merge
+
+when the target branch has new commits, git creates a new commit that combines the changes.
+
+we will merge `auth` branch into `main` (target) branch.
+
+```bash
+git switch main
+git merge auth  # use --no-ff to force three-way merge
+```
+
+---
+
+# Exercise: Merging Branches in ThaiChat repository
+
+let's merge `auth` branch into `main` (target) branch.
+use `git merge --no-ff auth` to force three-way merge.
+
+```bash
+# switch to main branch
+git switch main
+
+# merge auth branch into main branch
+# use --no-ff to force three-way merge
+git merge --no-ff auth
+
+git log --oneline --graph --all
+```
+
+---
 
 ## Merge vs Rebase
 
