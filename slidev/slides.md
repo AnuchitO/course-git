@@ -688,8 +688,8 @@ a powerful plumbing tool that lets you examine the raw contents and metadata of 
   # Basic syntax
   git cat-file <type> <object>
   git cat-file -t <object>  # show type
-  git cat-file -s <object>  # show size
-  git cat-file -p <object>  # pretty print
+  git cat-file -s <object>  # show size (bytes)
+  git cat-file -p <object>  # pretty print based on its type.
   ```
 
   </div>
