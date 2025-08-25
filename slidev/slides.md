@@ -864,9 +864,9 @@ func filterBadMessages(messages []string) (bads []string) {
 ```go {3-6}
 package server // thaichat/server/server.go
 
-func filterEmojis(messages []string) (emojis []string) {
+func filterEmojis(messages []string) (emojisx []string) {
 
-	return emojis
+	return emojisx
 }
 
 func filterBadMessages(messages []string) (bads []string) {
@@ -874,9 +874,9 @@ func filterBadMessages(messages []string) (bads []string) {
 	return bads
 }
 
-func filterGoodMessages(messages []string) (goods []string) {
+func filterGoodMessages(messages []string) (goodx []string) {
 
-	return goods
+	return goodx
 }
 
 ```
