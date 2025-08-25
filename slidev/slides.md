@@ -1991,308 +1991,186 @@ git stash pop
 
 ---
 
-## Clone and Contribute Workflow
+# Git Revert: Undo Changes Safely
 
-````md magic-move {lines: true}
-```bash
-# Clone an existing repository
-git clone https://github.com/AnuchitO/awesome-project.git
-cd awesome-project
-```
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+### Basic Usage
 
 ```bash
-# Clone an existing repository
-git clone https://github.com/AnuchitO/awesome-project.git
-cd awesome-project
+# Revert a specific commit
+git revert <commit-hash>
 
-# Create a feature branch for your work
-git checkout -b feature/add-user-authentication
+# Revert the most recent commit
+git revert HEAD
+
+# Revert a range of commits
+git revert OLDER_COMMIT..NEWER_COMMIT
 ```
+
+### Common Options
 
 ```bash
-# Create a feature branch for your work
-git checkout -b feature/add-user-authentication
+# Revert without committing
+git revert -n <commit>
 
-# Make your changes
-echo "// Authentication logic here" > auth.js
-git add auth.js
-git commit -m "Add authentication module"
+# Edit the commit message
+git revert -e <commit>
+
+# Continue after resolving conflicts
+git revert --continue
 ```
 
-```bash
-# Make your changes
-echo "// Authentication logic here" > auth.js
-git add auth.js
-git commit -m "Add authentication module"
-
-# Push your feature branch to remote
-git push origin feature/add-user-authentication
-```
-
-```bash
-# Push your feature branch to remote
-git push origin feature/add-user-authentication
-
-# Now create a Pull Request on GitHub
-# After PR is merged, clean up:
-git checkout main
-git pull origin main
-git branch -d feature/add-user-authentication
-```
-````
-
-<div class="mt-4 p-4 bg-blue-100 dark:bg-blue-900 rounded">
-💡 <strong>Pro Tip:</strong> Use <code>git fetch</code> to download changes without merging, then <code>git merge</code> when you're ready!
 </div>
 
-<!--
-Understanding remotes is crucial for team collaboration. Think of remotes as synchronized copies of your repository that multiple developers can access.
--->
+<div>
+
+### Example Workflow
+
+**Revert a specific commit**:
+
+```bash
+git revert b2c4d4e
+# Creates a new commit that undoes the changes
+```
+
+**Resolve conflicts** (if any):
+
+```bash
+# After fixing conflicts
+git add .
+git revert --continue
+```
+
+### Key Points
+
+- Creates a new commit that undoes changes
+- Safe for shared branches
+- Preserves history
+- Use `git reset` for local changes instead
+
+</div>
+</div>
 
 ---
 
-# Advanced Git Operations
+# Git Cherry-pick
 
-Let's explore powerful Git features for managing complex scenarios.
+<div class="grid grid-cols-2 gap-4">
+<div>
 
-## Git Stash - Save Work in Progress
-
-````md magic-move {lines: true}
-```bash
-# Scenario: You're working on a feature but need to switch branches urgently
-# You have uncommitted changes that aren't ready to commit yet
-git status
-```
+### Basic Usage
 
 ```bash
-# Scenario: You're working on a feature but need to switch branches urgently
-# You have uncommitted changes that aren't ready to commit yet
-git status
+# Cherry-pick a single commit
+git cherry-pick <commit-hash>
 
-# Stash your current changes
-git stash
-# or with a descriptive message
-git stash save "WIP: refactoring authentication logic"
+# Cherry-pick multiple commits
+git cherry-pick <commit1> <commit2>
+
+# Cherry-pick a range of commits
+git cherry-pick <start-commit>..<end-commit>
 ```
+
+### Common Options
 
 ```bash
-# Stash your current changes
-git stash save "WIP: refactoring authentication logic"
-
-# Now you can switch branches safely
-git checkout main
-# do urgent work...
-git checkout feature/auth-refactor
+# Edit the commit message before committing
+-e, --edit
+# Don't create a commit
+-n, --no-commit
+# Sign off the commit
+-s, --signoff
 ```
-
-```bash
-# Now you can switch branches safely
-git checkout main
-# do urgent work...
-git checkout feature/auth-refactor
-
-# Get your stashed changes back
-git stash list  # see all stashes
-git stash pop   # apply and remove latest stash
-```
-
-```bash
-# Get your stashed changes back
-git stash list  # see all stashes
-git stash pop   # apply and remove latest stash
-
-# Alternative: apply without removing from stash
-git stash apply stash@{0}
-git stash drop stash@{0}  # manually remove when ready
-```
-````
-
-## Git Reset - Undo Changes
-
-````md magic-move {lines: true}
-```bash
-# Different types of reset for different scenarios
-git log --oneline  # see recent commits
-```
-
-```bash
-# Different types of reset for different scenarios
-git log --oneline  # see recent commits
-
-# Soft reset: Undo commit but keep changes staged
-git reset --soft HEAD~1
-git status  # changes are still staged
-```
-
-```bash
-# Soft reset: Undo commit but keep changes staged
-git reset --soft HEAD~1
-git status  # changes are still staged
-
-# Mixed reset (default): Undo commit and unstage changes
-git reset HEAD~1
-git status  # changes are in working directory
-```
-
-```bash
-# Mixed reset (default): Undo commit and unstage changes
-git reset HEAD~1
-git status  # changes are in working directory
-
-# Hard reset: ⚠️ DANGER - Completely remove commit and changes
-git reset --hard HEAD~1
-# Changes are permanently lost!
-```
-````
-
-<div class="mt-4 p-4 bg-red-100 dark:bg-red-900 rounded">
-⚠️ <strong>Warning:</strong> <code>git reset --hard</code> permanently deletes changes. Always stash or commit important work first!
 </div>
 
-<!--
-These advanced operations give you fine-grained control over your Git history. Stash is great for quickly switching contexts, while reset helps you undo mistakes.
--->
+<div>
+
+### Example Workflow
+
+```bash
+# On feature branch
+git log --oneline
+# a1b2c3d (feature) Add payment processing
+# c3d4e5f Initial commit
+
+# Switch to main and cherry-pick
+git checkout main
+git cherry-pick a1b2c3d
+```
+
+#### When to Use
+
+- Backport bug fixes
+- Apply specific features between branches
+- Move commits without merging
+
+#### ⚠️ Warning
+- Can create duplicate commits
+- May cause merge conflicts
+- Use with caution on shared branches
+
+</div>
+</div>
 
 ---
 
-# Git Workflows
+# Checkout File from Another Branch
 
-Different teams use different Git workflows. Let's see the most popular ones in action.
+<div class="grid grid-cols-2 gap-4">
+<div>
 
-## GitHub Flow - Simple and Effective
-
-````md magic-move {lines: true}
-```bash
-# GitHub Flow: Perfect for continuous deployment
-# Step 1: Always start from main
-git checkout main
-git pull origin main
-```
+### Basic Usage
 
 ```bash
-# GitHub Flow: Perfect for continuous deployment
-# Step 1: Always start from main
-git checkout main
-git pull origin main
+# Get a file from another branch
+git checkout <branch> -- <file>
 
-# Step 2: Create a feature branch
-git checkout -b feature/user-profile-page
+# Get multiple files
+git checkout <branch> -- file1.txt file2.txt
+
+# Get files from a specific commit
+git checkout <commit-hash> -- <file>
 ```
 
-```bash
-# Step 2: Create a feature branch
-git checkout -b feature/user-profile-page
+### Common Scenarios
 
-# Step 3: Work on your feature
-echo "<h1>User Profile</h1>" > profile.html
-git add profile.html
-git commit -m "Add user profile page structure"
-```
+- Recover a deleted file from another branch
+- Get a specific version of a file
+- Compare changes between branches
 
-```bash
-# Step 3: Work on your feature
-echo "<h1>User Profile</h1>" > profile.html
-git add profile.html
-git commit -m "Add user profile page structure"
-
-# Step 4: Push and create Pull Request
-git push origin feature/user-profile-page
-# Go to GitHub and create PR
-```
-
-```bash
-# Step 4: Push and create Pull Request
-git push origin feature/user-profile-page
-# Go to GitHub and create PR
-
-# Step 5: After PR review and merge
-git checkout main
-git pull origin main
-git branch -d feature/user-profile-page
-```
-
-```bash
-# Step 5: After PR review and merge
-git checkout main
-git pull origin main
-git branch -d feature/user-profile-page
-
-# Step 6: Deploy main branch
-# This happens automatically with CI/CD
-# Your feature is now live! 🚀
-```
-````
-
-## Git Flow - Structured Release Management
-
-````md magic-move {lines: true}
-```bash
-# Git Flow: Better for scheduled releases
-# Initialize git flow in your repository
-git flow init
-# Accept defaults for branch names
-```
-
-```bash
-# Git Flow: Better for scheduled releases
-# Initialize git flow in your repository
-git flow init
-
-# Start a new feature
-git flow feature start user-authentication
-# This creates feature/user-authentication branch
-```
-
-```bash
-# Start a new feature
-git flow feature start user-authentication
-
-# Work on your feature
-echo "// Auth logic" > auth.js
-git add auth.js
-git commit -m "Implement user authentication"
-```
-
-```bash
-# Work on your feature
-echo "// Auth logic" > auth.js
-git add auth.js
-git commit -m "Implement user authentication"
-
-# Finish the feature (merges to develop)
-git flow feature finish user-authentication
-```
-
-```bash
-# Finish the feature (merges to develop)
-git flow feature finish user-authentication
-
-# When ready for release
-git flow release start v1.2.0
-# Make final adjustments, update version numbers
-git flow release finish v1.2.0
-```
-
-```bash
-# When ready for release
-git flow release start v1.2.0
-git flow release finish v1.2.0
-
-# For emergency fixes
-git flow hotfix start critical-security-fix
-# Fix the issue
-git flow hotfix finish critical-security-fix
-# This merges to both main and develop
-```
-````
-
-<div class="mt-4 p-4 bg-green-100 dark:bg-green-900 rounded">
-💡 <strong>Choose Your Workflow:</strong> GitHub Flow for fast iteration, Git Flow for structured releases
 </div>
 
-<!--
-Choose a workflow that matches your team size, deployment frequency, and project complexity. Consistency is more important than perfection.
--->
+<div>
+
+### Example Workflow
+
+```bash
+# Accidentally deleted a file
+git status
+# On branch main
+# Deleted: important-config.json
+
+# Get it back from develop branch
+git checkout develop -- important-config.json
+
+git status
+# On branch main
+# Changes to be committed:
+#   (use "git restore --staged <file>..." to unstage)
+#       new file:   important-config.json
+```
+
+### ⚠️ Caveats
+
+- Overwrites the file in your working directory
+- Doesn't switch branches
+- Always commit or stash changes first
+- Use with caution as changes can't be undone
+
+</div>
+</div>
 
 ---
 
@@ -2372,6 +2250,8 @@ git bisect reset
 ```
 ````
 
+---
+
 ## Git Blame - Find Who Changed What
 
 ````md magic-move {lines: true}
@@ -2443,80 +2323,6 @@ git log -L 15,20:auth.js  # track lines 15-20 in auth.js
 
 <!--
 These debugging tools can save hours of manual searching. Git bisect is particularly powerful for finding regressions in large codebases.
--->
-
----
-
-# Git Best Practices
-
-Follow these practices to maintain a clean, professional Git history.
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Commit Practices
-✅ **Make atomic commits** - one logical change per commit
-✅ **Write clear messages** - explain what and why
-✅ **Commit frequently** - don't wait too long
-✅ **Test before committing** - ensure code works
-
-❌ **Don't commit broken code** to main branches
-❌ **Don't commit secrets** or sensitive data
-❌ **Don't use generic messages** like "fix"
-
-## Branch Practices
-✅ **Use descriptive names** - `feature/user-authentication`
-✅ **Keep branches focused** - one feature per branch
-✅ **Delete merged branches** - keep repository clean
-✅ **Rebase before merging** - maintain linear history
-
-</div>
-
-<div>
-
-## .gitignore Essentials
-```bash
-# Dependencies
-node_modules/
-vendor/
-
-# Build outputs
-dist/
-build/
-*.o
-*.exe
-
-# Environment files
-.env
-.env.local
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-logs/
-```
-
-## Security Tips
-- Never commit passwords or API keys
-- Use environment variables for secrets
-- Review changes before pushing
-- Use signed commits for verification
-
-</div>
-
-</div>
-
-<!--
-Good Git practices make collaboration smoother and help maintain code quality. These habits become second nature with practice.
 -->
 
 ---
