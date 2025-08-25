@@ -373,9 +373,9 @@ The evolution from local to centralized to distributed version control reflects 
 
 ---
 
-# Git Architecture
+# Git Files State and Workflow
 
-Understanding Git's three-tree architecture is crucial for mastering Git.
+Understanding Git's stages workflow is crucial
 
 ```mermaid
 %%{init: {
@@ -710,7 +710,7 @@ a powerful plumbing tool that lets you examine the raw contents and metadata of 
 
 ```bash
 # 1. Navigate to ThaiChat and check status
-cd ~/work/thaichat
+cd path/to/thaichat
 git status
 
 git --no-pager log --parents --oneline
