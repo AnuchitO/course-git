@@ -2515,17 +2515,6 @@ lazygit
 - **Jenkins** - Build automation
 - **Husky** - Git hooks for Node.js
 
-## Git Hooks
-```bash
-# Pre-commit hook example
-#!/bin/sh
-npm test
-if [ $? -ne 0 ]; then
-  echo "Tests failed, commit aborted"
-  exit 1
-fi
-```
-
 </div>
 
 </div>
