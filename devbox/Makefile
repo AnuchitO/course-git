@@ -31,6 +31,12 @@ exec:
 	docker exec -it $(CONTAINER_NAME) /bin/zsh
 
 
+# export GPG key
+.PHONY: export-gpg
+export-gpg:
+	docker exec $(CONTAINER_NAME) gpg --export --armor $(GPG_KEY_ID) | pbcopy
+
+
 # Start container in background (for long-running use)
 .PHONY: start
 start:
