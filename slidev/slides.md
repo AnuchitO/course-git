@@ -2435,13 +2435,18 @@ pre-commit install
 </div>
 <div>
 
-### Key Features
+### How to Use pre-commit
 
-- **Multi-language support** (Python, Go, JavaScript, etc.)
-- **Massive ecosystem** of existing hooks
-- **Runs in isolated environments**
-- **Fast** - Only runs on changed files
-- **Configurable** per repository
+1. Install:
+   ```bash
+   pip install pre-commit
+   ```
+2. Add config file: `.pre-commit-config.yaml`
+3. Install hooks:
+   ```bash
+   pre-commit install
+   ```
+4. Run: `pre-commit run --all-files`
 
 ### Common Hooks
 
