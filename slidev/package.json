@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "slidev build",
+    "build:base": "slidev build --base /course-git/",
     "dev": "slidev --open",
     "start": "slidev",
     "app": "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --app=http://localhost:3030; slidev",
